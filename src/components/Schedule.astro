@@ -21,8 +21,8 @@ const rooms = (await getCollection('rooms'))
 	.filter((room) => room.id.startsWith(`${lang}/`))
 	.map((room) => room.data);
 const days = [...new Set(conferences.map(getDayKey))];
-const dayLabels = lang === 'fr'
-	? ['Jour un', 'Jour deux', 'Jour trois']
+const dayLabels = lang === 'es'
+	? ['Día uno', 'Día dos', 'Día tres']
 	: ['Day One', 'Day Two', 'Day Three'];
 ---
 
@@ -37,7 +37,7 @@ const dayLabels = lang === 'fr'
 					<section>
 						<header class="border-b border-border pb-3">
 							<h3 class="m-0 text-xl font-semibold text-ink">{room.name}</h3>
-							{room.capacity && <p class="mt-1 mb-0 text-sm text-subtle">{room.capacity} {lang === 'fr' ? 'places' : 'seats'}</p>}
+							{room.capacity && <p class="mt-1 mb-0 text-sm text-subtle">{room.capacity} {lang === 'es' ? 'lugares' : 'seats'}</p>}
 						</header>
 						<div class="divide-y divide-border border-b border-border">
 							{dayConferences.filter((conference) => conference.data.room === room.id).map((conference) => {

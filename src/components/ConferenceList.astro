@@ -10,7 +10,7 @@ interface Props {
 	viewAllHref?: string;
 }
 
-const { heading = 'Conferences', limit = 100, viewAllHref } = Astro.props as Props;
+const { heading = 'Programa', limit = 100, viewAllHref } = Astro.props as Props;
 const lang = getLangFromUrl(Astro.url);
 const translatePath = useTranslatedPath(lang);
 const allConferences = (await getCollection('conferences'))
@@ -23,14 +23,14 @@ const conferences = allConferences
 	.sort((a, b) => String(getDayKey(a)).localeCompare(String(getDayKey(b))) || a.data.startsAt.localeCompare(b.data.startsAt))
 	.slice(0, limit);
 const days = [...new Set(conferences.map(getDayKey))];
-const dayLabels = lang === 'fr'
-	? ['Jour un', 'Jour deux', 'Jour trois']
+const dayLabels = lang === 'es'
+	? ['Día uno', 'Día dos', 'Día tres']
 	: ['Day One', 'Day Two', 'Day Three'];
 ---
 
 <section>
 	<header class="space-y-2 max-w-2xl lg:pb-12">
-		<p class="eyebrow m-0">Program</p>
+		<p class="eyebrow m-0">{lang === 'es' ? 'Programa' : 'Program'}</p>
 		<h2 class="text-3xl sm:text-4xl font-semibold leading-tight text-ink m-0">{heading}</h2>
 	</header>
 	<div class="mt-8 space-y-12">
@@ -48,6 +48,6 @@ const dayLabels = lang === 'fr'
 			</section>
 			);
 		})}
-		{viewAllHref && <Card title="View full program" href={withBase(viewAllHref)} />}
+		{viewAllHref && <Card title={lang === 'es' ? 'Consulta el programa completo' : 'View full program'} href={withBase(viewAllHref)} />}
 	</div>
 </section>

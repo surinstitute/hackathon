@@ -8,7 +8,7 @@ import { slugify, withBase } from '../../utils/slugify';
 const site = await getSite();
 
 export async function getStaticPaths() {
-	const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('en/'));
+	const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('es/'));
 	const tags = new Map<string, string>();
 
 	conferences.forEach((conference) => {
@@ -30,7 +30,7 @@ interface Props {
 const { tagLabel } = Astro.props as Props;
 const tagParam = Astro.params.tag ?? '';
 const conferences = (await getCollection('conferences'))
-	.filter((conference) => conference.id.startsWith('en/'))
+	.filter((conference) => conference.id.startsWith('es/'))
 	.filter((conference) =>
 	(conference.data.tags ?? []).some((tag) => slugify(tag) === tagParam),
 );
@@ -38,20 +38,20 @@ const conferences = (await getCollection('conferences'))
 conferences.sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
 ---
 
-<PageLayout title={`${tagLabel} · Topics · ${site.title}`} description={`Conferences tagged ${tagLabel}`}>
+<PageLayout title={`${tagLabel} · Temas · ${site.title}`} description={`Actividades etiquetadas con ${tagLabel}`}>
 	<section class="content-shell py-12 space-y-6">
 		<header class="space-y-2">
-			<p class="text-sm uppercase tracking-[0.3em] text-muted">Topic</p>
+			<p class="text-sm uppercase tracking-[0.3em] text-muted">Tema</p>
 			<h1 class="text-3xl font-semibold text-ink">{tagLabel}</h1>
-			<p class="text-muted">Conferences in this topic.</p>
+			<p class="text-muted">Actividades de este tema.</p>
 		</header>
 
 		{conferences.length === 0 ? (
-			<p class="text-muted">There are no conferences in this topic.</p>
+			<p class="text-muted">No hay actividades para este tema.</p>
 		) : (
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 				{conferences.map((conference) => {
-					const slug = conference.id.replace(/^en\//, '');
+					const slug = conference.id.replace(/^es\//, '');
 					return (
 					<Card
 						title={conference.data.title}

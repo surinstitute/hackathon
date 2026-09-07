@@ -17,12 +17,12 @@ const rooms = (await getCollection('rooms'))
 	.filter((room) => room.id.startsWith(`${lang}/`))
 	.map((room) => room.data);
 const venue = (await getCollection('venue')).find((entry) => entry.id.startsWith(`${lang}/`))?.data ?? {
-	name: 'Civic Hall',
-	address: '125 Avenida Madero Oriente',
-	city: 'Centro, Morelia, Michoacan, Mexique',
-	description: 'Un batiment civique restaure au coeur historique de Morelia, a quelques pas des cafes, hotels et places publiques.',
+	name: 'Museo Nacional de Antropologia',
+	address: 'Av. Paseo de la Reforma y Calzada Gandhi s/n',
+	city: 'Chapultepec Polanco, Miguel Hidalgo, 11560 Mexico, Mexique',
+	description: 'Le musee national d\'anthropologie du Mexique, installe a Chapultepec au milieu des paysages et des histoires qui nourrissent nos conversations sur la Terre.',
 	heroImage: undefined,
-	arrival: "Entrez par les portes principales de l'Avenida Madero. Les inscriptions ouvrent dans le hall; l'Auditorium est au rez-de-chaussee et le Studio a l'etage.",
+	arrival: "Entrez par les portes principales du Paseo de la Reforma. Les inscriptions ouvrent dans le hall central; l'Auditorium est au rez-de-chaussee et le Studio a l'etage.",
 	accessibility: "Un acces sans marche est disponible par l'entree sud de la Calle Abasolo. Les deux salles proposent des places reservees et des toilettes accessibles se trouvent pres du hall.",
 };
 ---
@@ -31,7 +31,7 @@ const venue = (await getCollection('venue')).find((entry) => entry.id.startsWith
 	<section class="content-shell py-12 space-y-8">
 		<div class="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-stretch">
 			<header class="flex flex-col justify-center space-y-3 py-4">
-				<p class="eyebrow m-0">Lieu de Summit 2026</p>
+				<p class="eyebrow m-0">Lieu de Hackathon 2026</p>
 				<h1 class="text-3xl sm:text-4xl font-semibold leading-tight text-ink m-0">{venue.name}</h1>
 				<p class="text-base text-muted m-0">{venue.description}</p>
 				<address class="not-italic text-muted">{venue.address}<br />{venue.city}</address>

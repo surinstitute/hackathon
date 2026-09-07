@@ -5,8 +5,8 @@ import Prose from '../../components/Prose.astro';
 import { slugify, withBase } from '../../utils/slugify';
 
 export async function getStaticPaths() {
-	const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('en/'));
-	return conferences.map((conference) => ({ params: { slug: conference.id.replace(/^en\//, '') }, props: conference }));
+	const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('es/'));
+	return conferences.map((conference) => ({ params: { slug: conference.id.replace(/^es\//, '') }, props: conference }));
 }
 
 const conference = Astro.props as CollectionEntry<'conferences'>;

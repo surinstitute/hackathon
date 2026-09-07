@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/wallpaper.jpg';
+
 interface Action {
 	label: string;
 	href: string;
@@ -16,31 +19,182 @@ import { withBase } from '../utils/slugify';
 const { eyebrow, title, description, actions = [] } = Astro.props;
 ---
 
-<section class="content-shell flex items-center">
-	<div class="grid gap-4 max-w-3xl">
-		{eyebrow && <p class="eyebrow">{eyebrow}</p>}
-		<h1 class="text-4xl md:text-5xl lg:text-6xl leading-tight m-0">{title}</h1>
-		{description && <p class="text-muted text-base md:text-lg max-w-2xl m-0">{description}</p>}
-		{actions.length > 0 && (
-			<div class="flex flex-wrap gap-3 mt-3">
-				{actions.map((action) => (
-					<a class="button primary" href={withBase(action.href)}>
-						{action.label}
-					</a>
-				))}
-			</div>
-		)}
+
+<section class="hero">
+	<Image class="hero-image" src={heroImage} alt="" width={1440} height={960} loading="eager" />
+	<div class="hero-overlay" aria-hidden="true"></div>
+	<div class="content-shell hero-content">
+		<div class="grid max-w-3xl gap-4">
+			{eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
+			<h1>{title}</h1>
+			{description && <p class="hero-description">{description}</p>}
+			{actions.length > 0 && (
+				<div class="flex flex-wrap gap-3 pt-3">
+					{actions.map((action, index) => (
+						<a class:list={['hero-action', { 'hero-action-secondary': index > 0 }]} href={withBase(action.href)}>
+							{action.label}
+						</a>
+					))}
+				</div>
+			)}
+		</div>
 	</div>
 </section>
 
 <style>
-	.content-shell {
-		min-height: calc(100vh - calc(var(--grid-cell) * 1));
+	.hero {
+		position: relative;
+		display: flex;
+		align-items: end;
+		isolation: isolate;
+		width: 100vw;
+		max-width: none;
+		margin-left: calc(50% - 50vw);
+		min-height: calc(100vh - var(--grid-cell));
+		overflow: hidden;
+		background: #0c1620;
+	}
+
+	.hero-image,
+	.hero-overlay {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.hero-image {
+		z-index: -2;
+		object-fit: cover;
+		object-position: center center;
+	}
+
+	.hero-overlay {
+		z-index: -1;
+		background:
+			linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 46%, var(--hero-overlay-end) 100%),
+			linear-gradient(0deg, var(--hero-overlay-bottom) 0%, transparent 62%);
+	}
+
+	:global(:root[data-theme='light']) {
+		--hero-overlay-start: rgb(255 255 255 / 94%);
+		--hero-overlay-middle: rgb(255 255 255 / 76%);
+		--hero-overlay-end: rgb(255 255 255 / 30%);
+		--hero-overlay-bottom: rgb(255 255 255 / 72%);
+		--hero-content-color: #050505;
+		--hero-muted-color: rgb(5 5 5 / 76%);
+		--hero-button-background: #050505;
+		--hero-button-color: #fff;
+		--hero-button-border: #050505;
+		--hero-button-secondary-background: rgb(255 255 255 / 42%);
+		--hero-button-secondary-color: #050505;
+		--hero-button-secondary-border: rgb(5 5 5 / 42%);
+	}
+
+	:global(:root[data-theme='dark']) {
+		--hero-overlay-start: rgb(0 0 0 / 88%);
+		--hero-overlay-middle: rgb(0 0 0 / 68%);
+		--hero-overlay-end: rgb(0 0 0 / 24%);
+		--hero-overlay-bottom: rgb(0 0 0 / 82%);
+		--hero-content-color: #fff;
+		--hero-muted-color: rgb(255 255 255 / 86%);
+		--hero-button-background: #fff;
+		--hero-button-color: #101820;
+		--hero-button-border: #fff;
+		--hero-button-secondary-background: rgb(255 255 255 / 12%);
+		--hero-button-secondary-color: #fff;
+		--hero-button-secondary-border: rgb(255 255 255 / 58%);
+	}
+
+	:global(:root[data-theme='blue']) {
+		--hero-overlay-start: rgb(5 18 53 / 92%);
+		--hero-overlay-middle: rgb(5 18 53 / 73%);
+		--hero-overlay-end: rgb(5 18 53 / 26%);
+		--hero-overlay-bottom: rgb(5 18 53 / 80%);
+		--hero-content-color: #fff;
+		--hero-muted-color: rgb(255 255 255 / 86%);
+		--hero-button-background: #fff;
+		--hero-button-color: #101820;
+		--hero-button-border: #fff;
+		--hero-button-secondary-background: rgb(255 255 255 / 12%);
+		--hero-button-secondary-color: #fff;
+		--hero-button-secondary-border: rgb(255 255 255 / 58%);
+	}
+
+	.hero-content {
+		padding-top: clamp(5rem, 13vh, 10rem);
+		padding-bottom: clamp(3rem, 10vh, 7rem);
+		color: var(--hero-content-color);
+	}
+
+	.hero-eyebrow {
+		margin: 0;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.28em;
+		text-transform: uppercase;
+		color: var(--hero-muted-color);
+	}
+
+	.hero-content h1 {
+		margin: 0;
+		font-size: clamp(2.75rem, 5vw, 5.25rem);
+		font-weight: 600;
+		line-height: 1.04;
+	}
+
+	.hero-description {
+		max-width: 42rem;
+		margin: 0;
+		font-size: clamp(1rem, 1.5vw, 1.2rem);
+		line-height: 1.6;
+		color: var(--hero-muted-color);
+	}
+
+	.hero-action {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.75rem;
+		padding: 0.65rem 1.1rem;
+		border: 1px solid var(--hero-button-border);
+		border-radius: 999px;
+		background: var(--hero-button-background);
+		color: var(--hero-button-color);
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+	}
+
+	.hero-action:hover {
+		transform: translateY(-1px);
+		background: transparent;
+		color: var(--hero-content-color);
+	}
+
+	.hero-action-secondary {
+		border-color: var(--hero-button-secondary-border);
+		background: var(--hero-button-secondary-background);
+		color: var(--hero-button-secondary-color);
+	}
+
+	.hero-action-secondary:hover {
+		background: transparent;
 	}
 
 	@media (max-width: 720px) {
-		.content-shell {
+		.hero {
 			min-height: calc(100vh - calc(var(--grid-cell) * 4));
+		}
+
+		.hero-image {
+			object-position: 62% center;
+		}
+
+		.hero-overlay {
+			background: linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 100%), linear-gradient(0deg, var(--hero-overlay-bottom) 0%, transparent 70%);
 		}
 	}
 </style>

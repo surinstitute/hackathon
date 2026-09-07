@@ -6,36 +6,36 @@ import Card from '../components/Card.astro';
 import PageLayout from '../layouts/PageLayout.astro';
 
 const rooms = (await getCollection('rooms'))
-	.filter((room) => room.id.startsWith('en/'))
+	.filter((room) => room.id.startsWith('es/'))
 	.map((room) => room.data);
-const venue = (await getCollection('venue')).find((entry) => entry.id.startsWith('en/'))?.data ?? {
-	name: 'Civic Hall',
-	address: '125 Avenida Madero Oriente',
-	city: 'Centro, Morelia, Michoacan, Mexico',
-	description: 'A restored civic building in the historic center of Morelia, a short walk from cafes, hotels, and public plazas.',
-	arrival: 'Enter through the main doors on Avenida Madero. Registration opens in the lobby; the Auditorium is on the ground floor and the Studio is upstairs.',
-	accessibility: 'Step-free access is available at the south entrance on Calle Abasolo. Both event rooms have reserved seating and accessible restrooms are located beside the lobby.',
+const venue = (await getCollection('venue')).find((entry) => entry.id.startsWith('es/'))?.data ?? {
+	name: 'Conferencia Interamericana de Seguridad Social',
+	address: 'Sede por confirmar',
+	city: 'Ciudad de México, México',
+	description: 'Espacio anfitrión de Detrás del humo, un hackatón de incidencia en salud frente a los nuevos productos de nicotina.',
+	arrival: 'La información de acceso y registro se compartirá con las personas seleccionadas antes del evento.',
+	accessibility: 'La sede contará con medidas de accesibilidad y espacios seguros para la participación de todas las personas asistentes.',
 };
 ---
 
-<PageLayout title="Venue" description={venue.description}>
+<PageLayout title="Sede" description={venue.description}>
 	<section class="content-shell py-12 space-y-8">
 		<div class="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-stretch">
 			<header class="flex flex-col justify-center space-y-3 py-4">
-				<p class="eyebrow m-0">Summit 2026 venue</p>
+				<p class="eyebrow m-0">Sede del hackatón</p>
 				<h1 class="text-3xl sm:text-4xl font-semibold leading-tight text-ink m-0">{venue.name}</h1>
 				<p class="text-base text-muted m-0">{venue.description}</p>
 				<address class="not-italic text-muted">{venue.address}<br />{venue.city}</address>
 			</header>
-			<Image class="min-h-72 w-full border border-border object-cover lg:h-full" src={venue.heroImage ?? venuePlaceholder} alt={venue.name} width={1440} />
+			<Image class="min-h-72 w-full border border-border object-cover lg:h-full" src={venue.heroImage ?? venuePlaceholder} alt={venue.name} width={3840} height={2560} />
 		</div>
 		<div class="grid gap-6 border-y border-border py-6 md:grid-cols-2">
-			<div><h2 class="text-lg font-semibold text-ink">Getting here</h2><p class="mt-2 mb-0 text-muted">{venue.arrival}</p></div>
-			<div><h2 class="text-lg font-semibold text-ink">Accessibility</h2><p class="mt-2 mb-0 text-muted">{venue.accessibility}</p></div>
+			<div><h2 class="text-lg font-semibold text-ink">Cómo llegar</h2><p class="mt-2 mb-0 text-muted">{venue.arrival}</p></div>
+			<div><h2 class="text-lg font-semibold text-ink">Accesibilidad</h2><p class="mt-2 mb-0 text-muted">{venue.accessibility}</p></div>
 		</div>
-		<h2 class="text-2xl font-semibold text-ink">Rooms</h2>
+		<h2 class="text-2xl font-semibold text-ink">Salón</h2>
 		<div class="grid gap-6 md:grid-cols-2">
-			{rooms.map((room) => <Card title={room.name} eyebrow={room.capacity ? `${room.capacity} seats` : undefined} description={room.description} />)}
+			{rooms.map((room) => <Card title={room.name} eyebrow={room.capacity ? `${room.capacity} lugares` : undefined} description={room.description} />)}
 		</div>
 	</section>
 </PageLayout>

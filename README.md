@@ -1,6 +1,6 @@
-# Summit
+# Hackathon
 
-An Astro starter for a single conference event. Publish the conference program, speaker profiles, and a chronological schedule from typed content collections.
+An Astro starter for a single conference event. Publish Programa, speaker profiles, and a chronological schedule from typed content collections.
 
 ![](./public/SS-1.png)
 
@@ -57,7 +57,7 @@ Frontmatter example:
 ```md
 ---
 title: "Opening keynote"
-description: "A practical start to Summit."
+description: "A practical start to Hackathon."
 date: 2027-10-14
 day: 1
 startsAt: "09:30"

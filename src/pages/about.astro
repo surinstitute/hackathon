@@ -6,45 +6,48 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Sponsors from '../components/Sponsors.astro';
 
 const organizers = (await getCollection('authors'))
-	.filter((entry) => entry.id.startsWith('en/'))
+	.filter((entry) => entry.id.startsWith('es/'))
 	.map((entry) => entry.data);
+const showOrganizers = false;
 ---
 
-<PageLayout title="About Summit" description="The people and partners bringing Summit to Morelia.">
+<PageLayout title="El hackatón" description="Detrás del humo: hackatón de incidencia en salud frente a los nuevos productos de nicotina.">
 	<section class="content-shell py-12 space-y-14">
-		<About lang="en" />
+		<About lang="es" />
 
 		<section class="grid gap-8 border-b border-border pb-14 md:grid-cols-[minmax(0,1.25fr)_minmax(16rem,0.75fr)]" aria-labelledby="about-heading">
 			<div class="space-y-5">
-				<p class="eyebrow m-0">The gathering</p>
-				<h1 id="about-heading" class="m-0 text-3xl font-semibold leading-tight text-ink sm:text-4xl">A conference for the work that happens after the keynote.</h1>
-				<p class="m-0 text-lg leading-relaxed text-muted">Summit is a small conference for people who make the web: the designers mapping a useful flow, the developers keeping a service dependable, the writers giving an interface its voice, and the teams making room for all of that work to happen.</p>
-				<p class="m-0 leading-relaxed text-muted">We bring those perspectives together because the most durable digital work is rarely the result of one discipline working alone. It comes from honest trade-offs, shared language, and the willingness to examine how a decision will feel to the person on the other side of the screen.</p>
-				<p class="m-0 leading-relaxed text-muted">Across the program, speakers share the details behind their practice: what they tried, what changed their mind, and what they would do differently next time. The aim is not a catalogue of finished answers. It is a more useful conversation about how to make better ones.</p>
+				<p class="eyebrow m-0">El encuentro</p>
+				<h1 id="about-heading" class="m-0 text-3xl font-semibold leading-tight text-ink sm:text-4xl">Ideas jóvenes para proteger la salud colectiva.</h1>
+				<p class="m-0 text-lg leading-relaxed text-muted">Detrás del humo reúne a estudiantes de distintas disciplinas para crear campañas de incidencia frente a los vapeadores, las bolsas de nicotina y el tabaco calentado.</p>
+				<p class="m-0 leading-relaxed text-muted">Las políticas públicas y la prevención no siempre avanzan al ritmo de estos productos y su comercialización. El hackatón abre un espacio para que las juventudes imaginen respuestas informadas, éticas y viables.</p>
+				<p class="m-0 leading-relaxed text-muted">Cada equipo desarrollará una propuesta clara de incidencia que ayude a prevenir daños, fortalecer entornos saludables y proteger derechos.</p>
 			</div>
 			<div class="space-y-5 border-l-0 border-border pt-1 lg:border-l lg:pl-8">
-				<p class="m-0 text-lg font-semibold leading-snug text-ink">Built for attention, not acceleration.</p>
-				<p class="m-0 leading-relaxed text-muted">The schedule leaves space between sessions for questions, chance conversations, and a proper break. Two rooms keep the program varied without turning the day into a race from one headline to the next.</p>
-				<p class="m-0 leading-relaxed text-muted">Morelia gives the gathering a human scale: a walkable historic center, generous public spaces, and a venue made for being in the same room. Come for the talks, stay for the conversations that continue after them.</p>
+				<p class="m-0 text-lg font-semibold leading-snug text-ink">Creación, colaboración y acción.</p>
+				<p class="m-0 leading-relaxed text-muted">Durante dos días, los equipos recibirán inspiración, integrarán perspectivas diversas, prototiparán campañas y contarán con mentorías especializadas.</p>
+				<p class="m-0 leading-relaxed text-muted">La experiencia culmina con la presentación de propuestas ante un jurado multidisciplinario y retroalimentación para hacerlas más robustas.</p>
 			</div>
 		</section>
 
-		<section class="space-y-6" aria-labelledby="organizers-heading">
-			<header class="max-w-2xl space-y-2">
-				<p class="eyebrow m-0">Organizers</p>
-				<h1 id="organizers-heading" class="m-0 text-3xl font-semibold leading-tight text-ink sm:text-4xl">The people behind Summit</h1>
-				<p class="m-0 text-muted">A small local team shaping a thoughtful, practical gathering for the open web community.</p>
-			</header>
-			<div class="grid gap-6 md:grid-cols-3">
-				{organizers.map((organizer) => <Card title={organizer.name} eyebrow={organizer.role} description={organizer.bio} image={organizer.avatar} imageAlt={organizer.name} />)}
-			</div>
-		</section>
+		{showOrganizers && (
+			<section class="space-y-6" aria-labelledby="organizers-heading">
+				<header class="max-w-2xl space-y-2">
+					<p class="eyebrow m-0">Organización</p>
+					<h1 id="organizers-heading" class="m-0 text-3xl font-semibold leading-tight text-ink sm:text-4xl">Las personas detrás del hackatón</h1>
+					<p class="m-0 text-muted">SUR Institute organiza el encuentro en colaboración con CREA y con apoyo de Campaign for Tobacco-Free Kids y Bloomberg Philanthropies.</p>
+				</header>
+				<div class="grid gap-6 md:grid-cols-3">
+					{organizers.map((organizer) => <Card title={organizer.name} eyebrow={organizer.role} description={organizer.bio} image={organizer.avatar} imageAlt={organizer.name} />)}
+				</div>
+			</section>
+		)}
 
 		<section class="border-y border-border py-10" aria-labelledby="sponsors-heading">
 			<div class="max-w-2xl space-y-3">
-				<p class="eyebrow m-0">Sponsors</p>
-				<h2 id="sponsors-heading" class="m-0 text-2xl font-semibold leading-tight text-ink">Help make Summit possible</h2>
-				<p class="m-0 text-muted">Sponsorship supports accessible tickets, a welcoming venue, and the practical details that make an in-person event work. Partner opportunities will be announced soon.</p>
+				<p class="eyebrow m-0">Organizaciones Aliadas</p>
+				<h2 id="sponsors-heading" class="m-0 text-2xl font-semibold leading-tight text-ink">Hacer posible Detrás del humo</h2>
+				<p class="m-0 text-muted">Las alianzas fortalecen un espacio independiente de la industria tabacalera, guiado por evidencia científica, protección de derechos y bienestar colectivo.</p>
 			</div>
 			<div class="mt-8">
 				<Sponsors />

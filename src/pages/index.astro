@@ -4,11 +4,12 @@ import Hero from '../components/Hero.astro';
 import ConferenceList from '../components/ConferenceList.astro';
 import Numbers from '../components/Numbers.astro';
 import About from '../components/About.astro';
+import Sponsors from '../components/Sponsors.astro';
 import { getCollection } from 'astro:content';
 import { getSite } from '../utils/consts';
 const site = await getSite();
-const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('en/'));
-const speakerCount = (await getCollection('speakers')).filter((speaker) => speaker.id.startsWith('en/')).length;
+const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('es/'));
+const speakerCount = (await getCollection('speakers')).filter((speaker) => speaker.id.startsWith('es/')).length;
 const dayCount = new Set(conferences.map((conference) => conference.data.day)).size;
 ---
 
@@ -16,30 +17,32 @@ const dayCount = new Set(conferences.map((conference) => conference.data.day)).s
 	title={site.title}
 >
 	<Hero
-		eyebrow="A conference boilerplate"
-		title="A single day of ideas that move the web forward."
-		description="A practical Astro foundation for publishing one event, its conference program, speakers, and schedule."
+			eyebrow="22 y 23 de octubre de 2026 · Ciudad de México"
+			title="Detrás del humo"
+			description="Hackatón de incidencia en salud frente a los nuevos productos de nicotina."
 		actions={[
-			{ label: 'Explore conferences', href: '/conferences' },
-			{ label: 'View schedule', href: '/schedule' },
+			{ label: 'Conoce el reto', href: '/about' },
+			{ label: 'Consulta la agenda', href: '/schedule' },
 		]}
 	/>
 
-	<About lang="en" />
+	<Sponsors />
+
+	<About lang="es" />
 
 	<Numbers
-		eyebrow="Summit 2026"
-		title="The event at a glance"
-		copy="Three days of talks, workshops, and conversations across Civic Hall."
+			eyebrow="El hackatón en cifras"
+			title="Dos días para convertir ideas en incidencia"
+			copy="Un espacio de creatividad, colaboración y acción para proteger la salud colectiva."
 		stats={[
-			{ label: 'Conferences', value: String(conferences.length), description: 'Ideas and practical sessions across the program.' },
-			{ label: 'Speakers', value: String(speakerCount), description: 'Practitioners sharing their work on stage.' },
-			{ label: 'Days', value: String(dayCount), description: 'A three-day gathering in the heart of Morelia.' },
+			{ label: 'Momentos', value: String(conferences.length), description: 'Inspiración, ideación, mentorías y presentación final.' },
+			{ label: 'Personas invitadas', value: String(speakerCount), description: 'Especialistas que acompañarán el proceso.' },
+			{ label: 'Días', value: String(dayCount), description: 'Tiempo compartido para aprender, crear y proponer.' },
 		]}
 	/>
 
 	<ConferenceList
-		heading="Conferences"
+		heading="Programa del hackatón"
 		limit={3}
 		viewAllHref="/conferences"
 	/>

@@ -1,12 +1,15 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import { defaultLang, showDefaultLang } from '../../../i18n/ui';
+import { defaultLang, languages, showDefaultLang } from '../../../i18n/ui';
 import NewsPost from '../../../layouts/NewsPost.astro';
 
 export async function getStaticPaths() {
 	const entries = await getCollection('news');
 	return entries
-		.filter((entry) => showDefaultLang || !entry.id.startsWith(`${defaultLang}/`))
+		.filter((entry) => {
+			const [lang] = entry.id.split('/');
+			return lang in languages && (showDefaultLang || lang !== defaultLang);
+		})
 		.map((entry) => {
 			const [lang, ...slug] = entry.id.split('/');
 			return { params: { lang, slug: slug.join('/') }, props: entry };

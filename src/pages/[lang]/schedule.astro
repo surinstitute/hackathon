@@ -2,17 +2,18 @@
 import { getCollection } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
 import Schedule from '../../components/Schedule.astro';
-import { defaultLang, showDefaultLang } from '../../i18n/ui';
+import { defaultLang, languages, showDefaultLang } from '../../i18n/ui';
 
 export async function getStaticPaths() {
 	const conferences = await getCollection('conferences');
 	return [...new Set(conferences.map((conference) => conference.id.split('/')[0]))]
+		.filter((lang): lang is keyof typeof languages => lang in languages)
 		.filter((lang) => showDefaultLang || lang !== defaultLang)
 		.map((lang) => ({ params: { lang } }));
 }
 ---
 
-<PageLayout title="Schedule" description="The full agenda for Summit events.">
+<PageLayout title="Schedule" description="The full agenda for Hackathon events.">
 	<section class="content-shell py-12 space-y-8">
 		<header class="space-y-3 max-w-3xl">
 			<p class="eyebrow m-0">Schedule</p>

@@ -1,18 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
 import Speakers from '../../components/Speakers.astro';
-import { defaultLang, showDefaultLang } from '../../i18n/ui';
+import { defaultLang, languages, showDefaultLang } from '../../i18n/ui';
 import PageLayout from '../../layouts/PageLayout.astro';
 
 export async function getStaticPaths() {
 	const speakers = await getCollection('speakers');
 	return [...new Set(speakers.map((speaker) => speaker.id.split('/')[0]))]
+		.filter((lang): lang is keyof typeof languages => lang in languages)
 		.filter((lang) => showDefaultLang || lang !== defaultLang)
 		.map((lang) => ({ params: { lang } }));
 }
 ---
 
-<PageLayout title="Speakers" description="Meet the people sharing their work and ideas at Summit.">
+<PageLayout title="Speakers" description="Meet the people sharing their work and ideas at Hackathon.">
 	<section class="content-shell py-12 space-y-8">
 		<header class="space-y-3 max-w-3xl">
 			<p class="eyebrow m-0">Speakers</p>

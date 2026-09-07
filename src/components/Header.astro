@@ -7,7 +7,6 @@ import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/util
 const site = await getSite();
 import SearchModal from "./SearchModal.astro";
 import ThemeToggle from "./ThemeToggle.astro";
-import LanguagePicker from "./LanguagePicker.astro";
 import { Icon } from "astro-icon/components";
 
 // determine language and translator
@@ -33,10 +32,9 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
             <Icon
               name="tabler:rocket"
               size="2em"
-              class="inline-block mr-3 align-middle"
+              class="inline-block align-middle"
               aria-hidden="true"
             />
-            <span class="hidden md:inline">{site.title}</span>
           </a>
         </h1>
       </div>
@@ -85,25 +83,6 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
           <span class="sr-only">Toggle navigation</span>
         </button>
         <SearchModal />
-        <LanguagePicker />
-        <a
-          class="header-button"
-          href="https://github.com/roicort/launchpad"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit the GitHub repository"
-        >
-          <Icon name="tabler:brand-github" size={18} stroke-width={1.6} />
-        </a>
-        <button
-          class="header-button"
-          type="button"
-          id="debug-toggle"
-          aria-label="Toggle debug borders"
-          aria-pressed="false"
-        >
-          <Icon name="tabler:bug" size={18} stroke-width={1.6} />
-        </button>
         <ThemeToggle />
         <a
           class="inline-flex min-h-9 items-center border border-ink bg-ink px-3 text-xs font-semibold uppercase tracking-[0.16em] text-surface transition-colors hover:bg-transparent hover:text-ink"
@@ -119,34 +98,11 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
 </header>
 
 <script is:inline>
-  const DEBUG_KEY = "debug-borders";
-
-  const applyDebug = (state) => {
-    const isOn = state === "on";
-    document.documentElement.dataset.debug = isOn ? "on" : "off";
-    const button = document.getElementById("debug-toggle");
-    if (button) button.setAttribute("aria-pressed", isOn ? "true" : "false");
-  };
-
   const applyNav = (state) => {
     const isOpen = state === "open";
     document.documentElement.dataset.nav = isOpen ? "open" : "closed";
     const button = document.getElementById("nav-toggle");
     if (button) button.setAttribute("aria-pressed", isOpen ? "true" : "false");
-  };
-
-  const getPreferredDebug = () => {
-    const stored = localStorage.getItem(DEBUG_KEY);
-    if (stored === "on" || stored === "off") return stored;
-    return "off";
-  };
-
-  const toggleDebug = () => {
-    const current =
-      document.documentElement.dataset.debug === "on" ? "on" : "off";
-    const next = current === "on" ? "off" : "on";
-    localStorage.setItem(DEBUG_KEY, next);
-    applyDebug(next);
   };
 
   const toggleNav = () => {
@@ -156,13 +112,7 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
     applyNav(next);
   };
 
-  applyDebug(getPreferredDebug());
   applyNav("closed");
-
-  const debugButton = document.getElementById("debug-toggle");
-  if (debugButton) {
-    debugButton.addEventListener("click", toggleDebug);
-  }
 
   const navButton = document.getElementById("nav-toggle");
   if (navButton) {

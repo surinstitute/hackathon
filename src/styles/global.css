@@ -64,7 +64,6 @@
 		background-image:
 			linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
 			linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
-		background-size: var(--grid-cell) var(--grid-cell);
 	}
 
 	a {
@@ -97,10 +96,6 @@
 		white-space: normal;
 	}
 
-	:root[data-debug='on'] * {
-		outline: 1px dashed color-mix(in oklab, var(--color-ink) 45%, transparent);
-		outline-offset: -1px;
-	}
 }
 
 @layer components {

@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { withBase } from '../utils/slugify';
 
 interface Props {
-	lang: 'en' | 'fr';
+	lang: 'es' | 'en';
 }
 
 const { lang } = Astro.props as Props;
@@ -15,7 +16,7 @@ const conferences = (await getCollection('conferences'))
 if (!venue) throw new Error(`Missing ${lang} venue content.`);
 if (conferences.length === 0) throw new Error(`Missing ${lang} conference content.`);
 
-const dateFormatter = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
+const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-MX' : 'en-US', {
 	day: 'numeric',
 	month: 'long',
 	year: 'numeric',
@@ -26,21 +27,21 @@ const endDate = conferences[conferences.length - 1]!;
 const dateRange = startDate.getTime() === endDate.getTime()
 	? dateFormatter.format(startDate)
 	: `${dateFormatter.format(startDate)} - ${dateFormatter.format(endDate)}`;
-const copy = lang === 'fr'
+const copy = lang === 'en'
 	? {
-			eyebrow: 'A propos de Summit',
-			title: 'Un lieu de rencontre pour celles et ceux qui construisent le web ouvert.',
-			description: "Summit reunit designers, developpeurs et createurs independants pour des idees pratiques, des conversations franches et du temps partage loin des ecrans.",
-			detailLabel: 'Lieu et dates',
-			linkLabel: 'Decouvrir le lieu',
-			linkHref: '/fr/venue',
-		}
-	: {
-			eyebrow: 'About Summit',
-			title: 'A meeting place for the people building the open web.',
-			description: 'Summit brings designers, developers, and independent makers together for practical ideas, candid conversations, and time to connect away from the screen.',
+			eyebrow: 'About Detrás del humo',
+			title: 'A hackathon for public-health advocacy.',
+			description: 'Students from different disciplines will develop practical responses to the risks posed by emerging nicotine products.',
 			detailLabel: 'Where and when',
 			linkLabel: 'Explore the venue',
+			linkHref: '/en/venue',
+		}
+	: {
+			eyebrow: 'Sobre Detrás del humo',
+			title: 'Un hackatón para la incidencia en salud.',
+			description: 'Estudiantes de distintas disciplinas crearán respuestas prácticas ante los riesgos de los productos emergentes de nicotina.',
+			detailLabel: 'Dónde y cuándo',
+			linkLabel: 'Conoce la sede',
 			linkHref: '/venue',
 		};
 ---
@@ -54,6 +55,6 @@ const copy = lang === 'fr'
 	<div class="border-l-0 border-border pt-1 md:border-l md:pl-8">
 		<p class="m-0 text-xs font-semibold uppercase tracking-[0.16em] text-muted">{copy.detailLabel}</p>
 		<p class="mt-2 mb-5 text-lg font-semibold leading-snug text-ink">{venue.data.name}, {venue.data.city} | {dateRange}</p>
-		<a class="button secondary" href={copy.linkHref}>{copy.linkLabel}</a>
+		<a class="button secondary" href={withBase(copy.linkHref)}>{copy.linkLabel}</a>
 	</div>
 </section>

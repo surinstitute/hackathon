@@ -3,11 +3,12 @@ import { getCollection } from 'astro:content';
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { getSite } from '../../../utils/consts';
 import { withBase } from '../../../utils/slugify';
-import { defaultLang, showDefaultLang } from '../../../i18n/ui';
+import { defaultLang, languages, showDefaultLang } from '../../../i18n/ui';
 
 export async function getStaticPaths() {
 	const entries = await getCollection('news');
 	return [...new Set(entries.map((entry) => entry.id.split('/')[0]))]
+		.filter((lang): lang is keyof typeof languages => lang in languages)
 		.filter((lang) => lang && (showDefaultLang || lang !== defaultLang))
 		.map((lang) => ({ params: { lang } }));
 }
@@ -17,9 +18,9 @@ const news = (await getCollection('news'))
 	.filter((entry) => entry.id.startsWith(`${lang}/`))
 	.sort((first, second) => second.data.pubDate.valueOf() - first.data.pubDate.valueOf());
 const site = await getSite();
-const copy = lang === 'fr'
-	? { title: 'Actualites de Summit', description: 'Annonces, mises a jour du programme et informations utiles pour la rencontre.', empty: 'Aucune actualite n est publiee pour le moment.' }
-	: { title: 'News from Summit', description: 'Program updates, announcements, and practical details for the gathering.', empty: 'No news has been published yet.' };
+const copy = lang === 'es'
+	? { title: 'Noticias de Detrás del humo', description: 'Anuncios, actualizaciones del programa e información práctica del hackatón.', empty: 'Aún no hay Noticias publicadas.' }
+	: { title: 'News from Detrás del humo', description: 'Program updates, announcements, and practical details for the hackathon.', empty: 'No news has been published yet.' };
 ---
 
 <PageLayout title={`News · ${site.title}`} description={copy.description}>
@@ -30,7 +31,7 @@ const copy = lang === 'fr'
 				{news.map((entry) => {
 					const slug = entry.id.replace(/^([^/]+)\//, '');
 					return <a class="group grid gap-3 border-b border-border py-6 last:border-b-0 md:grid-cols-[11rem_minmax(0,1fr)] md:gap-6" href={withBase(`/${lang}/news/${slug}/`)}>
-						<time class="text-sm text-muted" datetime={entry.data.pubDate.toISOString()}>{entry.data.pubDate.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</time>
+						<time class="text-sm text-muted" datetime={entry.data.pubDate.toISOString()}>{entry.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-MX' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</time>
 						<div><h2 class="m-0 text-xl font-semibold text-ink transition-colors group-hover:opacity-65">{entry.data.title}</h2><p class="mt-2 mb-0 text-muted">{entry.data.description}</p></div>
 					</a>;
 				})}

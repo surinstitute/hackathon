@@ -11,7 +11,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://roicort.github.io",
+  site: "https://hackathon.sur.institute",
   base: "/",
   integrations: [mdx(), sitemap(), pagefind(), icon()],
 
@@ -20,7 +20,7 @@ export default defineConfig({
   },
   fonts: [{
       provider: fontProviders.fontsource(),
-      name: "Space Grotesk",
-      cssVariable: "--font-main",
+      name: "Open Sans",
+      cssVariable: "--font-sans",
   }]
 });

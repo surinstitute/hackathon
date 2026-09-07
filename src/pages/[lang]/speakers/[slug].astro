@@ -1,13 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
 import Card from '../../../components/Card.astro';
-import { defaultLang, showDefaultLang } from '../../../i18n/ui';
+import { defaultLang, languages, showDefaultLang } from '../../../i18n/ui';
 import PageLayout from '../../../layouts/PageLayout.astro';
+import { withBase } from '../../../utils/slugify';
 
 export async function getStaticPaths() {
 	const speakers = await getCollection('speakers');
 	return speakers
-		.filter((speaker) => showDefaultLang || !speaker.id.startsWith(`${defaultLang}/`))
+		.filter((speaker) => {
+			const [lang] = speaker.id.split('/');
+			return lang in languages && (showDefaultLang || lang !== defaultLang);
+		})
 		.map((speaker) => ({ params: { lang: speaker.id.split('/')[0], slug: speaker.data.id }, props: speaker }));
 }
 
@@ -31,7 +35,7 @@ const conferences = (await getCollection('conferences'))
 			<div class="grid gap-6 md:grid-cols-2">
 				{conferences.map((conference) => {
 					const slug = conference.id.replace(/^[^/]+\//, '');
-					return <Card title={conference.data.title} href={`/${lang}/conferences/${slug}/`} description={conference.data.description} date={conference.data.date} />;
+					return <Card title={conference.data.title} href={withBase(`/${lang}/conferences/${slug}/`)} description={conference.data.description} date={conference.data.date} />;
 				})}
 			</div>
 		</section>
