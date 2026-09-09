@@ -29,6 +29,6 @@ export const ui = {
     'footer.astroGithub': 'Astro GitHub',
     'footer.allRightsReserved': 'Todos los derechos reservados.',
     'footer.designedBy': 'Diseñado por',
-    'footer.inMorelia': 'en Ciudad de México.',
+    'footer.inCity': 'en Morelia.',
   },
 } as const;
