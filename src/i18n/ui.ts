@@ -18,7 +18,7 @@ export const ui = {
     'nav.speakers': 'Personas invitadas',
     'nav.schedule': 'Agenda',
     'nav.venue': 'Sede',
-    'nav.register': 'Inscripciones',
+    'nav.register': '¡Participa!',
     'nav.projects': 'Proyectos',
     'footer.resources': 'Recursos',
     'footer.connect': 'Contacto',

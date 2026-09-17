@@ -7,10 +7,15 @@ import About from '../components/About.astro';
 import Sponsors from '../components/Sponsors.astro';
 import { getCollection } from 'astro:content';
 import { getSite } from '../utils/consts';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+
 const site = await getSite();
+const lang = getLangFromUrl(Astro.url);
 const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('es/'));
 const speakerCount = (await getCollection('speakers')).filter((speaker) => speaker.id.startsWith('es/')).length;
 const dayCount = new Set(conferences.map((conference) => conference.data.day)).size;
+const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
+const t = useTranslations(lang);
 ---
 
 <PageLayout
@@ -18,9 +23,10 @@ const dayCount = new Set(conferences.map((conference) => conference.data.day)).s
 >
 	<Hero
 			eyebrow="22 y 23 de octubre de 2026 · Ciudad de México"
-			title="Detrás del humo"
+			title="Detrás del humo sí se ve"
 			description="Hackatón de incidencia en salud frente a los nuevos productos de nicotina."
 		actions={[
+		    { label: t('nav.register'), href: registrationUrl },
 			{ label: 'Conoce el reto', href: '/about' },
 			{ label: 'Consulta la agenda', href: '/schedule' },
 		]}
