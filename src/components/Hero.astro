@@ -10,13 +10,15 @@ interface Action {
 interface Props {
 	eyebrow?: string;
 	title: string;
+	highlightedWord?: string;
 	description?: string;
 	actions?: Action[];
 }
 
 import { withBase } from '../utils/slugify';
 
-const { eyebrow, title, description, actions = [] } = Astro.props;
+const { eyebrow, title, highlightedWord, description, actions = [] } = Astro.props;
+const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 ---
 
 
@@ -26,7 +28,14 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 	<div class="content-shell hero-content">
 		<div class="grid max-w-3xl gap-4">
 			{eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
-			<h1>{title}</h1>
+			<h1>
+				{titleParts.map((part, index) => (
+					<>
+						{part}
+						{index < titleParts.length - 1 && <span class="hero-highlight">{highlightedWord}</span>}
+					</>
+				))}
+			</h1>
 			{description && <p class="hero-description">{description}</p>}
 			{actions.length > 0 && (
 				<div class="flex flex-wrap gap-3 pt-3">
@@ -81,7 +90,7 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 		--hero-overlay-start: rgb(255 255 255 / 96%);
 		--hero-overlay-middle: rgb(255 255 255 / 82%);
 		--hero-overlay-end: rgb(255 255 255 / 20%);
-		--hero-overlay-bottom: rgb(255 255 255 / 88%);
+		--hero-overlay-bottom: #ff7226;
 		--hero-content-color: #050505;
 		--hero-muted-color: rgb(5 5 5 / 76%);
 		--hero-button-background: #ff7226;
@@ -112,6 +121,17 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 		font-size: clamp(2.75rem, 7vw, 6rem);
 		font-weight: 600;
 		line-height: 1.04;
+	}
+
+	.hero-highlight {
+		display: inline-block;
+		padding: 0.02em 0.13em 0.08em;
+		border: 0.07em solid var(--color-ink);
+		border-radius: 0.16em;
+		background: #ff7226;
+		box-shadow: 0.09em 0.09em 0 var(--color-ink);
+		color: var(--color-ink);
+		transform: translate(-0.02em, -0.02em) rotate(-1deg);
 	}
 
 	.hero-description {

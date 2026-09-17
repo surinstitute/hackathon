@@ -36,7 +36,7 @@ const venue = (await getCollection('venue')).find((entry) => entry.id.startsWith
 				<p class="text-base text-muted m-0">{venue.description}</p>
 				<address class="not-italic text-muted">{venue.address}<br />{venue.city}</address>
 			</header>
-			<Image class="min-h-72 w-full border border-border object-cover lg:h-full" src={venue.heroImage ?? venuePlaceholder} alt={venue.name} width={1440} />
+			<Image class="min-h-72 w-full border border-border object-cover lg:h-full" src={venue.heroImage ?? venuePlaceholder} alt={venue.name} width={1440} loading="eager" />
 		</div>
 		<div class="grid gap-6 border-y border-border py-6 md:grid-cols-2">
 			<div><h2 class="text-lg font-semibold text-ink">Venir au lieu</h2><p class="mt-2 mb-0 text-muted">{venue.arrival}</p></div>

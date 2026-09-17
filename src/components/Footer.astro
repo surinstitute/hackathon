@@ -77,7 +77,7 @@ const iconMap: Record<string, string> = {
     </div>
     <div class="grid gap-6 pt-8 pb-4 md:flex md:items-center md:justify-between">
         <a href={withBase(translatePath('/'))} aria-label={site.title} class="mb-10 inline-block">
-          <Image src={logo} alt={site.title} width={300} height={94} class="h-auto w-56 sm:w-72" />
+          <Image src={logo} alt={site.title} width={300} height={94} loading="eager" class="h-auto w-56 sm:w-72" />
         </a>
       <p class="text-sm text-ink m-0"> {site.title} &copy; <a href="https://github.com/roicort/launchpad" class="underline text-muted hover:text-ink">Astro Launchpad</a> {today.getFullYear()}. {t('footer.allRightsReserved')} </p>
       <div class="md:text-right space-y-2 md:space-y-1">

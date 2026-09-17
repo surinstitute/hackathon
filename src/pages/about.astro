@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import About from '../components/About.astro';
 import Card from '../components/Card.astro';
 import PageLayout from '../layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
 import bloombergLogo from '../assets/logos/bloomberg.png';
 import surLogo from '../assets/logos/sur.png';
 import tfkLogo from '../assets/logos/tfk.png';
@@ -115,7 +116,7 @@ const showOrganizers = false;
 					<div class="space-y-5">
 						<h3 class="m-0 text-xs font-semibold uppercase tracking-[0.2em] text-subtle">Organiza</h3>
 						<a class="group inline-flex items-center" href="https://sur.institute/" target="_blank" rel="noopener noreferrer">
-							<img src={surLogo.src} alt="SUR Institute" class="max-h-24 w-auto max-w-[18rem] object-contain transition-transform duration-150 group-hover:scale-105" />
+							<Image src={surLogo} alt="SUR Institute" class="max-h-24 w-auto max-w-[18rem] object-contain transition-transform duration-150 group-hover:scale-105" />
 						</a>
 					</div>
 					<div class="space-y-5">
@@ -128,10 +129,10 @@ const showOrganizers = false;
 						<h3 class="m-0 text-xs font-semibold uppercase tracking-[0.2em] text-subtle">Con el apoyo de</h3>
 						<div class="grid gap-4">
 							<a class="group inline-flex items-center" href="https://www.bloomberg.org/" target="_blank" rel="noopener noreferrer">
-								<img src={bloombergLogo.src} alt="Bloomberg Philanthropies" class="max-h-20 w-auto max-w-[18rem] object-contain transition-transform duration-150 group-hover:scale-105" />
+								<Image src={bloombergLogo} alt="Bloomberg Philanthropies" class="max-h-20 w-auto max-w-[18rem] object-contain transition-transform duration-150 group-hover:scale-105" />
 							</a>
 							<a class="group inline-flex items-center" href="https://www.tobaccofreekids.org/" target="_blank" rel="noopener noreferrer">
-								<img src={tfkLogo.src} alt="Campaign for Tobacco-Free Kids" class="max-h-20 w-auto max-w-[8rem] object-contain transition-transform duration-150 group-hover:scale-105" />
+								<Image src={tfkLogo} alt="Campaign for Tobacco-Free Kids" class="max-h-20 w-auto max-w-[8rem] object-contain transition-transform duration-150 group-hover:scale-105" />
 							</a>
 						</div>
 					</div>

@@ -26,7 +26,7 @@ const lang = getLangFromUrl(Astro.url);
 			<p class="m-0 text-lg text-muted">{description}</p>
 			<p class="m-0 text-sm text-muted"><FormattedDate date={pubDate} locale={lang} />{updatedDate && ` | Updated ${updatedDate.toLocaleDateString(lang)}`}</p>
 		</header>
-		{heroImage && <Image class="mt-8 w-full border border-border" src={heroImage} alt="" width={1020} height={510} />}
+		{heroImage && <Image class="mt-8 w-full border border-border" src={heroImage} alt="" width={1020} height={510} loading="eager" />}
 		<Prose><slot /></Prose>
 	</article>
 </BaseLayout>

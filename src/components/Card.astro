@@ -11,9 +11,10 @@ interface Props {
 		image?: ImageMetadata | string;
 	imageAlt?: string;
 	eyebrow?: string;
+		imageLoading?: 'eager' | 'lazy';
 }
 
-const { title, href, description, date, image, imageAlt = '', eyebrow } = Astro.props as Props;
+const { title, href, description, date, image, imageAlt = '', eyebrow, imageLoading = 'lazy' } = Astro.props as Props;
 
 const baseDate = typeof date === 'string' ? new Date(date) : date;
 const articleClass =
@@ -32,14 +33,14 @@ const articleClass =
 						<img
 							src={image}
 							alt={imageAlt}
-							loading="lazy"
+							loading={imageLoading}
 							class="aspect-16/10 w-full object-cover transition duration-400 group-hover:scale-[1.02] sm:aspect-4/3"
 						/>
 					) : (
 						<Image
 							src={image}
 							alt={imageAlt}
-							loading="lazy"
+							loading={imageLoading}
 							class="aspect-16/10 w-full object-cover transition duration-400 group-hover:scale-[1.02] sm:aspect-4/3"
 						/>
 					)}
@@ -73,14 +74,14 @@ const articleClass =
 					<img
 						src={image}
 						alt={imageAlt}
-						loading="lazy"
+						loading={imageLoading}
 						class="aspect-16/10 w-full object-cover transition duration-400 group-hover:scale-[1.02] sm:aspect-4/3"
 					/>
 				) : (
 					<Image
 						src={image}
 						alt={imageAlt}
-						loading="lazy"
+						loading={imageLoading}
 						class="aspect-16/10 w-full object-cover transition duration-400 group-hover:scale-[1.02] sm:aspect-4/3"
 					/>
 				)}

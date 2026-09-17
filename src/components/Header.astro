@@ -24,7 +24,7 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
       class="grid h-full grid-cols-[1fr_auto] grid-rows-[auto_auto] items-center md:grid-cols-[auto_1fr_auto] md:grid-rows-1"
     >
       <div class="flex flex-col [html[data-nav='open']_&]:items-center">
-        <h1
+        <div
           class="text-base font-semibold uppercase m-0 [html[data-nav='open']_&]:text-center"
         >
           <a
@@ -39,7 +39,7 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
               aria-hidden="true"
             />
           </a>
-        </h1>
+        </div>
       </div>
       <nav
         class="hidden md:flex items-center gap-2 md:gap-3 overflow-x-auto overflow-y-visible pt-1 pb-0.5 text-[0.76rem] font-extrabold tracking-[0.2em] uppercase text-muted [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [--tw-pan-y:none] [&::-webkit-scrollbar]:hidden col-span-2 md:col-auto md:justify-self-center [html[data-nav='open']_&]:flex [html[data-nav='open']_&]:flex-col [html[data-nav='open']_&]:items-start [html[data-nav='open']_&]:gap-2 [html[data-nav='open']_&]:py-4 [html[data-nav='open']_&]:w-full [html[data-nav='open']_&]:col-span-2 [html[data-nav='open']_&]:justify-self-stretch"

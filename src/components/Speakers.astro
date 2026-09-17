@@ -11,7 +11,7 @@ const speakers = (await getCollection('speakers'))
 ---
 
 <div class="grid gap-6 md:grid-cols-3">
-	{speakers.map((speaker) => (
+	{speakers.map((speaker, index) => (
 		<Card
 			title={speaker.data.name}
 			href={withBase(translatePath(`/speakers/${speaker.data.id}/`))}
@@ -19,6 +19,7 @@ const speakers = (await getCollection('speakers'))
 			description={speaker.data.bio}
 			image={speaker.data.avatar}
 			imageAlt={speaker.data.name}
+			imageLoading={index === 0 ? 'eager' : 'lazy'}
 		>
 			{speaker.data.location && <p class="mt-3 mb-0 text-sm text-subtle">{speaker.data.location}</p>}
 		</Card>

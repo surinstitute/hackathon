@@ -2,6 +2,7 @@
 import bloombergLogo from '../assets/logos/bloomberg.png';
 import surLogo from '../assets/logos/sur.png';
 import tfkLogo from '../assets/logos/tfk.png';
+import { Image } from 'astro:assets';
 
 interface Props {
 	eyebrow?: string;
@@ -50,9 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
                   rel="noopener noreferrer"
                 >
                   {sponsor.logo ? (
-                    <img
-                      src={sponsor.logo.src}
+                    <Image
+                      src={sponsor.logo}
                       alt={sponsor.name}
+                      loading="eager"
                       class="max-h-14 w-auto max-w-[16rem] object-contain"
                     />
                   ) : (
