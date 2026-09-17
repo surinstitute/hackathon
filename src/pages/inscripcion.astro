@@ -1,0 +1,38 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout
+	title="Inscripción"
+	description="Completa tu solicitud para participar en Detrás del humo."
+>
+	<section class="content-shell space-y-8 py-12">
+		<header class="max-w-3xl space-y-3">
+			<p class="eyebrow m-0">Inscripción</p>
+			<h1 class="m-0 text-4xl font-semibold leading-tight text-ink sm:text-6xl">Participa en Detrás del humo</h1>
+			<p class="m-0 max-w-2xl text-lg text-muted">
+				Completa tu solicitud para formar parte del hackatón de incidencia en salud.
+			</p>
+		</header>
+
+		<div class="border-y-2 border-ink py-8">
+			<div
+				data-hievents-id="1"
+				data-hievents-primary-color="#ff7226"
+				data-hievents-primary-text-color="#050505"
+				data-hievents-secondary-color="#050505"
+				data-hievents-secondary-text-color="#ffffff"
+				data-hievents-background-color="#f7f5efff"
+				data-hievents-widget-type="widget"
+				data-hievents-widget-version="1.0"
+				data-hievents-locale="es"
+				data-hievents-padding="20px"
+				data-hievents-autoresize="true"
+				data-hievents-continue-button-text="Solicitar"
+				class="hievents-widget"
+			></div>
+		</div>
+	</section>
+</PageLayout>
+
+<script async src="https://eventos.sur.institute/widget.js"></script>

@@ -14,7 +14,6 @@ const lang = getLangFromUrl(Astro.url);
 const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('es/'));
 const speakerCount = (await getCollection('speakers')).filter((speaker) => speaker.id.startsWith('es/')).length;
 const dayCount = new Set(conferences.map((conference) => conference.data.day)).size;
-const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
 const t = useTranslations(lang);
 ---
 
@@ -27,7 +26,7 @@ const t = useTranslations(lang);
 			highlightedWord="Hackatón"
 			description="Evento gratuito de incidencia en salud frente a los nuevos productos de nicotina."
 		actions={[
-		    { label: t('nav.register'), href: '/about' },
+		    { label: t('nav.register'), href: '/inscripcion' },
 			{ label: 'Consulta la agenda', href: '/schedule' },
 		]}
 	/>

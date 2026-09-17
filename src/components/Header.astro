@@ -13,7 +13,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 const homeHref = withBase(translatePath('/'));
-const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
+const registrationUrl = withBase(translatePath('/inscripcion/'));
 ---
 
 <header class="fixed w-full z-30 flex items-center ">
@@ -89,8 +89,6 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
         <a
           class="inline-flex min-h-9 items-center rounded-[0.65rem] border-2 border-ink bg-[#ff7226] px-3 text-xs font-semibold uppercase tracking-[0.16em] text-ink shadow-[4px_4px_0_#050505] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none"
           href={registrationUrl}
-          target="_blank"
-          rel="noopener noreferrer"
         >
           {t('nav.register')}
         </a>
