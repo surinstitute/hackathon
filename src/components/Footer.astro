@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 import { withBase } from '../utils/slugify';
-import logo from '../assets/logo.png';
+import logo from '../assets/logos/sur.png';
 
 const site = await getSite();
 import { Icon } from 'astro-icon/components'
@@ -15,6 +15,7 @@ const socials = (await getCollection('socials')).map((entry) => entry.data);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
+const registrationUrl = site.registrationUrl ?? withBase(translatePath('/about/'));
 const iconMap: Record<string, string> = {
   x: 'tabler:brand-x',
   twitter: 'tabler:brand-x',
@@ -29,12 +30,16 @@ const iconMap: Record<string, string> = {
   <div class="content-shell">
     <div class="grid gap-10 border-b border-border pb-10 md:grid-cols-2">
       <div class="space-y-6">
-        <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.resources')}</p>
+        <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.navigation')}</p>
         <div class="grid gap-2 sm:grid-cols-2 text-sm text-ink">
-          <a class="transition-colors hover:text-ink" href="https://astro.build" target="_blank">{t('footer.astroDocs')}</a>
-          <a class="transition-colors hover:text-ink" href="https://docs.astro.build/en/guides/content-collections/" target="_blank">{t('footer.contentCollections')}</a>
-          <a class="transition-colors hover:text-ink" href="https://tailwindcss.com/docs" target="_blank">{t('footer.tailwindDocs')}</a>
-          <a class="transition-colors hover:text-ink" href="https://github.com/withastro/astro" target="_blank">{t('footer.astroGithub')}</a>
+          <a class="font-semibold transition-colors hover:text-ink" href={withBase(translatePath('/'))}>{t('nav.home')}</a>
+          <a class="font-semibold transition-colors hover:text-ink" href={withBase(translatePath('/about/'))}>{t('nav.about')}</a>
+          <a class="font-semibold transition-colors hover:text-ink" href={withBase(translatePath('/conferences/'))}>{t('nav.conferences')}</a>
+          <a class="font-semibold transition-colors hover:text-ink" href={withBase(translatePath('/schedule/'))}>{t('nav.schedule')}</a>
+          <a class="font-semibold transition-colors hover:text-ink" href={withBase(translatePath('/speakers/'))}>{t('nav.speakers')}</a>
+          <a class="font-semibold transition-colors hover:text-ink" href={withBase(translatePath('/venue/'))}>{t('nav.venue')}</a>
+          <a class="font-semibold transition-colors hover:text-ink" href={withBase(translatePath('/news/'))}>{t('nav.news')}</a>
+          <a class="font-semibold text-[#ff7226] transition-colors hover:text-ink" href={registrationUrl} target="_blank" rel="noopener noreferrer">{t('nav.register')}</a>
         </div>
       </div>
       <div class="grid gap-8">
@@ -66,14 +71,6 @@ const iconMap: Record<string, string> = {
                 </a>
               );
             })}
-          </div>
-        </div>
-        <div class="grid gap-3">
-          <p class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink">{t('footer.navigation')}</p>
-          <div class="grid gap-2 sm:grid-cols-2 text-sm text-ink">
-            <a class="transition-colors hover:text-ink" href={withBase(translatePath('/'))}>{t('nav.home')}</a>
-            <a class="transition-colors hover:text-ink" href={withBase(translatePath('/about/'))}>{t('nav.about')}</a>
-            <a class="transition-colors hover:text-ink" href={withBase(translatePath('/news/'))}>{t('nav.news')}</a>
           </div>
         </div>
       </div>

@@ -7,45 +7,16 @@
 	--content-columns: 18;
 	--grid-cell: calc(100vw / var(--grid-divisions));
 	--content-width: calc(var(--grid-cell) * var(--content-columns));
-	
+
 	--color-ink: #050505;
 	--color-muted: color-mix(in oklab, var(--color-ink) 75%, transparent);
-	--color-paper: #f9f9f9;
+	--color-paper: #f7f5ef;
 	--color-surface: #ffffff;
-	--color-border: color-mix(in oklab, var(--color-ink) 14%, transparent);
+	--color-border: var(--color-ink);
+	--shadow-hard: 5px 5px 0 var(--color-ink);
 }
 
 @layer base {
-	:root[data-theme="light"] {
-		color-scheme: light;
-		--color-ink: #050505;
-		--color-muted: color-mix(in oklab, var(--color-ink) 75%, transparent);
-		--color-paper: #f9f9f9;
-		--color-surface: #ffffff;
-		--color-border: color-mix(in oklab, var(--color-ink) 14%, transparent);
-		--grid-line: color-mix(in oklab, var(--color-ink) 10%, transparent);
-	}
-
-	:root[data-theme="dark"] {
-		color-scheme: dark;
-		--color-ink: #f5f5f5;
-		--color-muted: color-mix(in oklab, var(--color-ink) 75%, transparent);
-		--color-paper: #0d0d10;
-		--color-surface: #131318;
-		--color-border: color-mix(in oklab, var(--color-ink) 16%, transparent);
-		--grid-line: color-mix(in oklab, var(--color-ink) 10%, transparent);
-	}
-
-	:root[data-theme="blue"] {
-		color-scheme: light;
-		--color-ink: #84cdfa;
-		--color-muted: color-mix(in oklab, var(--color-ink) 75%, transparent);
-		--color-paper: #0f1b3f;
-		--color-surface: #0f1b3f;
-		--color-border: color-mix(in oklab, var(--color-ink) 18%, transparent);
-		--grid-line: color-mix(in oklab, var(--color-ink) 12%, transparent);
-	}
-
 	*,
 	*::before,
 	*::after {
@@ -61,9 +32,6 @@
 		line-height: 1.6;
 		color: var(--color-ink);
 		background-color: var(--color-paper);
-		background-image:
-			linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px),
-			linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
 	}
 
 	a {
@@ -112,35 +80,6 @@
 		color: var(--color-ink);
 	}
 
-	.theme-toggle {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		padding: 0.45rem 0.7rem;
-		border: 1px solid var(--color-border);
-		border-radius: 999px;
-		font-size: 0.72rem;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		background: color-mix(in oklab, var(--color-surface) 94%, transparent);
-		cursor: pointer;
-		transition: border-color 120ms ease, background-color 120ms ease;
-	}
-
-	.theme-toggle:hover {
-		border-color: color-mix(in oklab, var(--color-ink) 28%, transparent);
-		background: color-mix(in oklab, var(--color-ink) 6%, var(--color-surface));
-	}
-
-	.theme-toggle__dot {
-		display: inline-block;
-		width: 10px;
-		height: 10px;
-		border-radius: 999px;
-		border: 1px solid var(--color-ink);
-		background: var(--color-surface);
-	}
-
 	/* Header control styles (shared) */
 	.header-button {
 		@apply inline-flex h-[34px] w-[34px] md:h-9 md:w-9 items-center justify-center rounded-full transition duration-150 ease-out;
@@ -163,7 +102,6 @@
 		background: color-mix(in oklab, var(--color-ink, #111) 8%, var(--color-surface, #fff) 88%);
 	}
 
-	.header-button .theme-toggle__icon,
 	.header-button .search-trigger__icon,
 	.header-button svg {
 		display: inline-flex;
@@ -221,15 +159,16 @@
 		justify-content: center;
 		gap: 0.35rem;
 		padding: 0.65rem 1.1rem;
-		border-radius: 999px;
-		border: 1px solid var(--color-border);
+		border-radius: 0.65rem;
+		border: 2px solid var(--color-ink);
 		font-weight: 600;
 		font-size: 0.75rem;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		background: color-mix(in oklab, var(--color-surface) 92%, transparent);
+		box-shadow: var(--shadow-hard);
 		transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease,
-			transform 150ms ease;
+			transform 150ms ease, box-shadow 150ms ease;
 	}
 
 	.button.primary {
@@ -244,15 +183,17 @@
 	}
 
 	.button:hover {
-		transform: translateY(-1px);
-		border-color: color-mix(in oklab, var(--color-ink) 28%, transparent);
+		transform: translate(5px, 5px);
+		border-color: var(--color-ink);
+		box-shadow: none;
 	}
 
 	.card,
 	.post-card {
-		border: 1px solid var(--color-border);
+		border: 2px solid var(--color-ink);
 		background: var(--color-surface);
-		border-radius: var(--radius-card);
+		border-radius: 0.8rem;
+		box-shadow: var(--shadow-hard);
 		padding: 1.25rem;
 	}
 

@@ -52,7 +52,8 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 		margin-left: calc(50% - 50vw);
 		min-height: calc(100vh - var(--grid-cell));
 		overflow: hidden;
-		background: #0c1620;
+		border-bottom: 4px solid var(--color-ink);
+		background: var(--color-surface);
 	}
 
 	.hero-image,
@@ -72,53 +73,23 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 	.hero-overlay {
 		z-index: -1;
 		background:
-			linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 46%, var(--hero-overlay-end) 100%),
+			linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 58%, var(--hero-overlay-end) 100%),
 			linear-gradient(0deg, var(--hero-overlay-bottom) 0%, transparent 62%);
 	}
 
-	:global(:root[data-theme='light']) {
-		--hero-overlay-start: rgb(255 255 255 / 94%);
-		--hero-overlay-middle: rgb(255 255 255 / 76%);
-		--hero-overlay-end: rgb(255 255 255 / 30%);
-		--hero-overlay-bottom: rgb(255 255 255 / 72%);
+	:global(:root) {
+		--hero-overlay-start: rgb(255 255 255 / 96%);
+		--hero-overlay-middle: rgb(255 255 255 / 82%);
+		--hero-overlay-end: rgb(255 255 255 / 20%);
+		--hero-overlay-bottom: rgb(255 255 255 / 88%);
 		--hero-content-color: #050505;
 		--hero-muted-color: rgb(5 5 5 / 76%);
-		--hero-button-background: #050505;
-		--hero-button-color: #fff;
+		--hero-button-background: #ff7226;
+		--hero-button-color: #050505;
 		--hero-button-border: #050505;
-		--hero-button-secondary-background: rgb(255 255 255 / 42%);
+		--hero-button-secondary-background: rgb(255 255 255 / 78%);
 		--hero-button-secondary-color: #050505;
-		--hero-button-secondary-border: rgb(5 5 5 / 42%);
-	}
-
-	:global(:root[data-theme='dark']) {
-		--hero-overlay-start: rgb(0 0 0 / 88%);
-		--hero-overlay-middle: rgb(0 0 0 / 68%);
-		--hero-overlay-end: rgb(0 0 0 / 24%);
-		--hero-overlay-bottom: rgb(0 0 0 / 82%);
-		--hero-content-color: #fff;
-		--hero-muted-color: rgb(255 255 255 / 86%);
-		--hero-button-background: #fff;
-		--hero-button-color: #101820;
-		--hero-button-border: #fff;
-		--hero-button-secondary-background: rgb(255 255 255 / 12%);
-		--hero-button-secondary-color: #fff;
-		--hero-button-secondary-border: rgb(255 255 255 / 58%);
-	}
-
-	:global(:root[data-theme='blue']) {
-		--hero-overlay-start: rgb(5 18 53 / 92%);
-		--hero-overlay-middle: rgb(5 18 53 / 73%);
-		--hero-overlay-end: rgb(5 18 53 / 26%);
-		--hero-overlay-bottom: rgb(5 18 53 / 80%);
-		--hero-content-color: #fff;
-		--hero-muted-color: rgb(255 255 255 / 86%);
-		--hero-button-background: #fff;
-		--hero-button-color: #101820;
-		--hero-button-border: #fff;
-		--hero-button-secondary-background: rgb(255 255 255 / 12%);
-		--hero-button-secondary-color: #fff;
-		--hero-button-secondary-border: rgb(255 255 255 / 58%);
+		--hero-button-secondary-border: #050505;
 	}
 
 	.hero-content {
@@ -133,7 +104,7 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 		font-weight: 600;
 		letter-spacing: 0.28em;
 		text-transform: uppercase;
-		color: var(--hero-muted-color);
+		color: #ff7226;
 	}
 
 	.hero-content h1 {
@@ -158,20 +129,23 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 		min-height: 2.75rem;
 		padding: 0.65rem 1.1rem;
 		border: 1px solid var(--hero-button-border);
-		border-radius: 999px;
+		border: 2px solid var(--hero-button-border);
+		border-radius: 0.65rem;
 		background: var(--hero-button-background);
 		color: var(--hero-button-color);
 		font-size: 0.75rem;
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+		box-shadow: 5px 5px 0 var(--color-ink);
+		transition: background-color 150ms ease, color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
 	}
 
 	.hero-action:hover {
-		transform: translateY(-1px);
-		background: transparent;
-		color: var(--hero-content-color);
+		transform: translate(5px, 5px);
+		background: #fff;
+		box-shadow: none;
+		color: #050505;
 	}
 
 	.hero-action-secondary {
@@ -181,7 +155,8 @@ const { eyebrow, title, description, actions = [] } = Astro.props;
 	}
 
 	.hero-action-secondary:hover {
-		background: transparent;
+		background: #fff;
+		color: #050505;
 	}
 
 	@media (max-width: 720px) {

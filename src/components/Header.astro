@@ -6,7 +6,6 @@ import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/util
 
 const site = await getSite();
 import SearchModal from "./SearchModal.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 import { Icon } from "astro-icon/components";
 
 // determine language and translator
@@ -28,7 +27,11 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
         <h1
           class="text-base font-semibold uppercase m-0 [html[data-nav='open']_&]:text-center"
         >
-          <a href={homeHref} aria-label={site.title}>
+          <a
+            class="inline-flex items-center justify-center rounded-[0.65rem] border-2 border-ink bg-[#ff7226] p-2 text-ink shadow-[4px_4px_0_#050505] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none"
+            href={homeHref}
+            aria-label={site.title}
+          >
             <Icon
               name="tabler:rocket"
               size="2em"
@@ -39,7 +42,7 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
         </h1>
       </div>
       <nav
-        class="hidden md:flex items-center gap-2 md:gap-3 overflow-x-auto overflow-y-visible pt-1 pb-0.5 text-[0.72rem] tracking-[0.24em] uppercase text-muted [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [--tw-pan-y:none] [&::-webkit-scrollbar]:hidden col-span-2 md:col-auto md:justify-self-center [html[data-nav='open']_&]:flex [html[data-nav='open']_&]:flex-col [html[data-nav='open']_&]:items-start [html[data-nav='open']_&]:gap-2 [html[data-nav='open']_&]:py-4 [html[data-nav='open']_&]:w-full [html[data-nav='open']_&]:col-span-2 [html[data-nav='open']_&]:justify-self-stretch"
+        class="hidden md:flex items-center gap-2 md:gap-3 overflow-x-auto overflow-y-visible pt-1 pb-0.5 text-[0.76rem] font-extrabold tracking-[0.2em] uppercase text-muted [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [--tw-pan-y:none] [&::-webkit-scrollbar]:hidden col-span-2 md:col-auto md:justify-self-center [html[data-nav='open']_&]:flex [html[data-nav='open']_&]:flex-col [html[data-nav='open']_&]:items-start [html[data-nav='open']_&]:gap-2 [html[data-nav='open']_&]:py-4 [html[data-nav='open']_&]:w-full [html[data-nav='open']_&]:col-span-2 [html[data-nav='open']_&]:justify-self-stretch"
       >
         <HeaderLink href={translatePath('/about/') }>
           {t('nav.about')}
@@ -83,9 +86,8 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
           <span class="sr-only">Toggle navigation</span>
         </button>
         <SearchModal />
-        <ThemeToggle />
         <a
-          class="inline-flex min-h-9 items-center border border-ink bg-ink px-3 text-xs font-semibold uppercase tracking-[0.16em] text-surface transition-colors hover:bg-transparent hover:text-ink"
+          class="inline-flex min-h-9 items-center rounded-[0.65rem] border-2 border-ink bg-[#ff7226] px-3 text-xs font-semibold uppercase tracking-[0.16em] text-ink shadow-[4px_4px_0_#050505] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none"
           href={registrationUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -143,9 +145,17 @@ const registrationUrl = site.registrationUrl ?? 'https://example.com/register';
 
   header {
 		min-height: calc(var(--grid-cell) * 1);
-		background: color-mix(in oklab, var(--color-surface) 80%, transparent);
-		-webkit-backdrop-filter: blur(14px);
-		backdrop-filter: blur(14px);
+		background: var(--color-surface);
+		border-bottom: 4px solid var(--color-ink);
+		box-shadow: 0 4px 0 var(--color-ink);
+	}
+
+  nav a {
+  	display: inline-flex;
+  	align-items: center;
+  	min-height: 2.2rem;
+  	padding: 0.35rem 0.2rem;
+  	font-weight: 800;
   }
 
   /* Make header taller on small screens (2 grid cells) */

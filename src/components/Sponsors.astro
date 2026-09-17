@@ -1,5 +1,7 @@
 ---
-import { Icon } from 'astro-icon/components';
+import bloombergLogo from '../assets/logos/bloomberg.png';
+import surLogo from '../assets/logos/sur.png';
+import tfkLogo from '../assets/logos/tfk.png';
 
 interface Props {
 	eyebrow?: string;
@@ -8,12 +10,11 @@ interface Props {
 
 const { eyebrow, title } = Astro.props as Props;
 
-
 const sponsors = [
-  { name: 'SUR Institute', href: 'https://sur.institute/', icon: 'tabler:building-community' },
-  { name: 'CREA', href: 'https://crea.org.mx/', icon: 'tabler:users-group' },
-  { name: 'Campaign for Tobacco-Free Kids', href: 'https://www.tobaccofreekids.org/', icon: 'tabler:heart-handshake' },
-  { name: 'Bloomberg Philanthropies', href: 'https://www.bloomberg.org/', icon: 'tabler:heart-handshake' },
+  { name: 'SUR Institute', href: 'https://sur.institute/', logo: surLogo },
+  { name: 'CREA', href: 'https://crea.org.mx/' },
+  { name: 'Campaign for Tobacco-Free Kids', href: 'https://www.tobaccofreekids.org/', logo: tfkLogo },
+  { name: 'Bloomberg Philanthropies', href: 'https://www.bloomberg.org/', logo: bloombergLogo },
 ];
 ---
 
@@ -48,8 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Icon name={sponsor.icon} size={24} stroke-width={1.6} />
-                  <span>{sponsor.name}</span>
+                  {sponsor.logo ? (
+                    <img
+                      src={sponsor.logo.src}
+                      alt={sponsor.name}
+                      class="max-h-14 w-auto max-w-[16rem] object-contain"
+                    />
+                  ) : (
+                    <span class="text-3xl font-bold tracking-[-0.08em]">{sponsor.name}</span>
+                  )}
                 </a>
               );
             })}
