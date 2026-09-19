@@ -178,6 +178,12 @@
 		border-color: var(--color-ink);
 	}
 
+	.button.accent {
+		background: #ff7226;
+		color: var(--color-ink);
+		border-color: var(--color-ink);
+	}
+
 	.button.secondary {
 		background: color-mix(in oklab, var(--color-ink) 6%, var(--color-surface));
 		color: var(--color-ink);

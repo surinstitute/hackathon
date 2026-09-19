@@ -58,7 +58,9 @@ const copy = lang === 'en'
 	<div class="border-l-0 border-border pt-1 md:border-l md:pl-8">
 		<p class="m-0 text-xs font-semibold uppercase tracking-[0.16em] text-muted">{copy.detailLabel}</p>
 		<p class="mt-2 mb-5 text-lg font-semibold leading-snug text-ink">{venue.data.name}, {venue.data.city} | {dateRange}</p>
-		<a class="button secondary" href={withBase(copy.linkHref)}>{copy.linkLabel}</a>
+		<div class="flex flex-wrap gap-3">
+			<a class="button accent" href={withBase('/about/')}>Conoce el hackatón</a>
+			<a class="button secondary" href={withBase(copy.linkHref)}>{copy.linkLabel}</a>
+		</div>
 	</div>
-
 </section>

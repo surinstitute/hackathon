@@ -12,8 +12,8 @@ import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/util
 const site = await getSite();
 const lang = getLangFromUrl(Astro.url);
 const conferences = (await getCollection('conferences')).filter((conference) => conference.id.startsWith('es/'));
-const speakerCount = (await getCollection('speakers')).filter((speaker) => speaker.id.startsWith('es/')).length;
 const dayCount = new Set(conferences.map((conference) => conference.data.day)).size;
+const mentorshipCount = conferences.length;
 const t = useTranslations(lang);
 ---
 
@@ -21,10 +21,10 @@ const t = useTranslations(lang);
 	title={site.title}
 >
 	<Hero
-			eyebrow="22 y 23 de octubre de 2026 · Ciudad de México"
+			eyebrow="22 y 23 de octubre de 2026 · Ciudad de México - Conferencia Interamericana de Seguridad Social"
 			title="Hackatón Detrás del humo sí se ve"
 			highlightedWord="Hackatón"
-			description="Evento gratuito de incidencia en salud frente a los nuevos productos de nicotina."
+			description="Evento gratuito de incidencia en salud frente a los nuevos productos de nicotina. | Participación gratuita · Cupos limitados"
 		actions={[
 		    { label: t('nav.register'), href: '/inscripcion' },
 			{ label: '¿De que trata?', href: '/about' },
@@ -36,13 +36,14 @@ const t = useTranslations(lang);
 	<About lang="es" />
 
 	<Numbers
-			eyebrow="El hackatón en cifras"
-			title="Dos días para convertir ideas en incidencia"
-			copy="Un espacio de creatividad, colaboración y acción para proteger la salud colectiva."
+			eyebrow="Lo que vas a vivir"
+			title="Una experiencia para crear algo que importe"
+			copy="Trabaja con personas de distintas disciplinas, recibe acompañamiento y convierte una idea en una propuesta de incidencia."
 		stats={[
-			{ label: 'Momentos', value: String(conferences.length), description: 'Inspiración, ideación, mentorías y presentación final.' },
-			{ label: 'Personas invitadas', value: String(speakerCount), description: 'Especialistas que acompañarán el proceso.' },
-			{ label: 'Días', value: String(dayCount), description: 'Tiempo compartido para aprender, crear y proponer.' },
+		    { label: 'Equipos', value: '10', description: 'Cada equipo contará con 5 participantes de distintas disciplinas.' },
+			{ label: 'Retos de incidencia', value: '4', description: 'Regulación, impuestos, impacto ambiental y prevención.' },
+			{ label: 'Mentores especializados', value: String(mentorshipCount), description: 'Acompañamiento especializado para fortalecer tu propuesta.' },
+			{ label: 'Jornadas de trabajo', value: String(dayCount), description: 'Dos días para idear, prototipar y presentar.' },
 		]}
 	/>
 
