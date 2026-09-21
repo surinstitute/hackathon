@@ -1,0 +1,51 @@
+---
+interface Props {
+	label: string;
+	class?: string;
+}
+
+const { label, class: className = '' } = Astro.props as Props;
+---
+
+<div
+	data-heyform-id="SZUOjFZI"
+	data-heyform-type="modal"
+	data-heyform-custom-url="https://surform.up.railway.app/form/SZUOjFZI"
+	data-heyform-size="large"
+	data-heyform-open-trigger="click"
+	data-heyform-hide-after-submit="false"
+	data-heyform-auto-close="5"
+>
+	<button
+		class:list={['heyform__trigger-button', 'button', 'accent', 'registration-trigger', className]}
+		type="button"
+		onclick="HeyForm.openModal('SZUOjFZI')"
+	>
+		{label}
+	</button>
+</div>
+
+<style>
+	button.registration-trigger {
+		display: inline-flex;
+		min-height: 2.25rem;
+		align-items: center;
+		border: 2px solid var(--color-ink);
+		border-radius: 0.65rem;
+		background: #ff7226;
+		box-shadow: 4px 4px 0 var(--color-ink);
+		color: var(--color-ink);
+		cursor: pointer;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
+		padding: 0 0.75rem;
+		text-transform: uppercase;
+		transition: transform 150ms ease, box-shadow 150ms ease;
+	}
+
+	button.registration-trigger:hover {
+		transform: translate(4px, 4px);
+		box-shadow: none;
+	}
+</style>

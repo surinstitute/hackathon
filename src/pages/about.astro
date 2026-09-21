@@ -3,7 +3,9 @@ import { getCollection } from 'astro:content';
 import About from '../components/About.astro';
 import Card from '../components/Card.astro';
 import PageLayout from '../layouts/PageLayout.astro';
+import { withBase } from '../utils/slugify';
 import { Image } from 'astro:assets';
+import HeyFormTrigger from '../components/HeyFormTrigger.astro';
 import bloombergLogo from '../assets/logos/bloomberg.png';
 import surLogo from '../assets/logos/sur.png';
 import tfkLogo from '../assets/logos/tfk.png';
@@ -25,28 +27,14 @@ const showOrganizers = false;
 		    <p>Durante dos días vas a idear una solución, trabajar junto a especialistas y mentores y presentar tu propuesta frente a un jurado.</p>
 		</section>
 
-		<section class="border-border py-10" aria-labelledby="registration-heading">
-			<div class="max-w-2xl space-y-3">
-				<p class="eyebrow m-0">Inscripción</p>
-				<h2 id="registration-heading" class="m-0 text-3xl font-semibold leading-tight text-ink sm:text-4xl">Participa en Detrás del humo</h2>
-				<p class="m-0 text-muted">Completa tu solicitud para formar parte del hackatón.</p>
-			</div>
-			<div class="mt-8">
-				<div
-					data-hievents-id="1"
-					data-hievents-primary-color="#984affff"
-					data-hievents-primary-text-color="#000000"
-					data-hievents-secondary-color="#8b5cf6"
-					data-hievents-secondary-text-color="#ffffff"
-					data-hievents-background-color="#f9f9f9"
-					data-hievents-widget-type="widget"
-					data-hievents-widget-version="1.0"
-					data-hievents-locale="en"
-					data-hievents-padding="20px"
-					data-hievents-autoresize="true"
-					data-hievents-continue-button-text="Solicitar"
-					class="hievents-widget"
-				></div>
+		<section class="border-y-2 border-ink py-10" aria-labelledby="registration-heading">
+			<div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+				<div class="max-w-2xl space-y-3">
+					<p class="eyebrow m-0">Inscripción</p>
+					<h2 id="registration-heading" class="m-0 text-3xl font-semibold leading-tight text-ink sm:text-4xl">¿Quieres ser parte?</h2>
+					<p class="m-0 text-muted">Conoce los requisitos y completa tu solicitud para formar parte del hackatón.</p>
+				</div>
+				<HeyFormTrigger label="Inscripción" class="shrink-0" />
 			</div>
 		</section>
 
@@ -154,5 +142,3 @@ const showOrganizers = false;
 		</section>
 	</section>
 </PageLayout>
-
-<script async src="https://eventos.sur.institute/widget.js"></script>

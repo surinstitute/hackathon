@@ -1,10 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../assets/wallpaper.jpg';
+import HeyFormTrigger from './HeyFormTrigger.astro';
 
 interface Action {
 	label: string;
 	href: string;
+	modal?: boolean;
 }
 
 interface Props {
@@ -40,9 +42,16 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 			{actions.length > 0 && (
 				<div class="flex flex-wrap gap-3 pt-3">
 					{actions.map((action, index) => (
-						<a class:list={['hero-action', { 'hero-action-secondary': index > 0 }]} href={withBase(action.href)}>
-							{action.label}
-						</a>
+						action.modal ? (
+							<HeyFormTrigger
+								label={action.label}
+								class:list={['hero-action', { 'hero-action-secondary': index > 0 }]}
+							/>
+						) : (
+							<a class:list={['hero-action', { 'hero-action-secondary': index > 0 }]} href={withBase(action.href)}>
+								{action.label}
+							</a>
+						)
 					))}
 				</div>
 			)}

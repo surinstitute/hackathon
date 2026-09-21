@@ -3,6 +3,7 @@ import { getSite } from "../utils/consts";
 import { withBase } from "../utils/slugify";
 import HeaderLink from "./HeaderLink.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import HeyFormTrigger from './HeyFormTrigger.astro';
 
 const site = await getSite();
 import SearchModal from "./SearchModal.astro";
@@ -13,7 +14,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 const homeHref = withBase(translatePath('/'));
-const registrationUrl = withBase(translatePath('/inscripcion/'));
 ---
 
 <header class="fixed w-full z-30 flex items-center ">
@@ -53,9 +53,9 @@ const registrationUrl = withBase(translatePath('/inscripcion/'));
         <HeaderLink href={translatePath('/news/') }>
           {t('nav.news')}
         </HeaderLink>
-        <HeaderLink href={translatePath('/speakers/') }>
+        <!-- <HeaderLink href={translatePath('/speakers/') }>
           {t('nav.speakers')}
-        </HeaderLink>
+        </HeaderLink> -->
         <HeaderLink href={translatePath('/schedule/') }>
           {t('nav.schedule')}
         </HeaderLink>
@@ -86,12 +86,7 @@ const registrationUrl = withBase(translatePath('/inscripcion/'));
           <span class="sr-only">Toggle navigation</span>
         </button>
         <SearchModal />
-        <a
-          class="inline-flex min-h-9 items-center rounded-[0.65rem] border-2 border-ink bg-[#ff7226] px-3 text-xs font-semibold uppercase tracking-[0.16em] text-ink shadow-[4px_4px_0_#050505] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none"
-          href={registrationUrl}
-        >
-          {t('nav.register')}
-        </a>
+        <HeyFormTrigger label={t('nav.register')} />
       </div>
     </div>
   </div>

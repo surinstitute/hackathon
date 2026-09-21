@@ -15,7 +15,7 @@ const socials = (await getCollection('socials')).map((entry) => entry.data);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
-const registrationUrl = site.registrationUrl ?? withBase(translatePath('/about/'));
+const registrationUrl = 'https://surform.up.railway.app/form/SZUOjFZI';
 const iconMap: Record<string, string> = {
   x: 'tabler:brand-x',
   twitter: 'tabler:brand-x',
