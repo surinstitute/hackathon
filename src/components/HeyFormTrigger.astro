@@ -9,7 +9,7 @@ const { label, class: className = '', size = 'default' } = Astro.props as Props;
 ---
 
 <div
-	data-heyform-id="SZUOjFZI"
+	data-heyform-id="UnpKHNPJ"
 	data-heyform-type="modal"
 	data-heyform-custom-url="https://heyform-prod.up.railway.app/form/UnpKHNPJ"
 	data-heyform-size="large"
@@ -27,13 +27,17 @@ const { label, class: className = '', size = 'default' } = Astro.props as Props;
 			className,
 		]}
 		type="button"
-		onclick="HeyForm.openModal('SZUOjFZI')"
+		onclick="HeyForm.openModal('UnpKHNPJ')"
 	>
 		{label}
 	</button>
 </div>
 
 <style>
+	:global(.heyform__modal .heyform__loading-container) {
+		pointer-events: none;
+	}
+
 	button.registration-trigger {
 		display: inline-flex;
 		min-height: 2.25rem;
