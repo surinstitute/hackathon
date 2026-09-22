@@ -45,6 +45,7 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 						action.modal ? (
 							<HeyFormTrigger
 								label={action.label}
+								size="hero"
 								class:list={['hero-action', { 'hero-action-secondary': index > 0 }]}
 							/>
 						) : (

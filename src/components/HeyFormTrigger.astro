@@ -2,9 +2,10 @@
 interface Props {
 	label: string;
 	class?: string;
+	size?: 'default' | 'hero';
 }
 
-const { label, class: className = '' } = Astro.props as Props;
+const { label, class: className = '', size = 'default' } = Astro.props as Props;
 ---
 
 <div
@@ -17,7 +18,14 @@ const { label, class: className = '' } = Astro.props as Props;
 	data-heyform-auto-close="5"
 >
 	<button
-		class:list={['heyform__trigger-button', 'button', 'accent', 'registration-trigger', className]}
+		class:list={[
+			'heyform__trigger-button',
+			'button',
+			'accent',
+			'registration-trigger',
+			{ 'registration-trigger--hero': size === 'hero' },
+			className,
+		]}
 		type="button"
 		onclick="HeyForm.openModal('SZUOjFZI')"
 	>
@@ -47,5 +55,17 @@ const { label, class: className = '' } = Astro.props as Props;
 	button.registration-trigger:hover {
 		transform: translate(4px, 4px);
 		box-shadow: none;
+	}
+
+	button.registration-trigger--hero {
+		min-height: 2.75rem;
+		padding: 0.65rem 1.1rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		box-shadow: 5px 5px 0 var(--color-ink);
+	}
+
+	button.registration-trigger--hero:hover {
+		transform: translate(5px, 5px);
 	}
 </style>
