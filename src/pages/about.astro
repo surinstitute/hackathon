@@ -7,6 +7,7 @@ import { Image } from 'astro:assets';
 import HeyFormTrigger from '../components/HeyFormTrigger.astro';
 import surLogo from '../assets/logos/sur.png';
 import creaLogo from '../assets/logos/crea.png';
+import wallpaper from '../assets/wallpaper.png';
 
 const organizers = (await getCollection('authors'))
 	.filter((entry) => entry.id.startsWith('es/'))
@@ -17,6 +18,8 @@ const showOrganizers = false;
 <PageLayout title="El hackatón" description="Detrás del humo sí se ve: hackatón de incidencia en salud frente a los nuevos productos de nicotina.">
 	<section class="content-shell py-12 space-y-14">
 		<About lang="es" />
+
+		<Image src={wallpaper} alt="Hackatón Detrás del humo" class="w-full rounded-lg object-cover" />
 
 		<section class="border-border">
 		<h2 id="thematic-axes" class="mt-0 mb-5 text-3xl font-semibold leading-tight text-ink sm:text-4xl">¿En que consiste?</h2>
