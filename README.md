@@ -71,6 +71,8 @@ Each `speakers` value references a speaker YAML `id`. The program is available a
 ## Quick customization
 - Site name and description in [src/site-config.yml](src/site-config.yml).
 - Navigation and hero actions in [src/pages/index.astro](src/pages/index.astro).
+- The hero layers [Plasma.vue](src/components/Plasma.vue), adapted from [Vue Bits Plasma](https://vue-bits.dev/backgrounds/plasma), over the wallpaper, gradient, text, and buttons without intercepting clicks. It uses `--accent-color`, runs at 30 fps only while visible, and renders a still frame for reduced motion. Without WebGL2, the image and gradient remain. Its MIT + Commons Clause notice is preserved in the component.
+- `mouseInteractive={true}` in the hero enables mouse response without intercepting button clicks. Pointer coordinates account for the canvas resolution; mouse response is disabled for reduced motion.
 - Colors, type, and utilities in `src/styles/global.css`.
 - Key components: header with search and toggles ([src/components/Header.astro](src/components/Header.astro)), base layout ([src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro)).
 

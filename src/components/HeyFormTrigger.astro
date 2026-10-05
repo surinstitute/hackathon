@@ -21,7 +21,7 @@ const { label, class: className = '', size = 'default' } = Astro.props as Props;
 		class:list={[
 			'heyform__trigger-button',
 			'button',
-			'accent',
+			'primary',
 			'registration-trigger',
 			{ 'registration-trigger--hero': size === 'hero' },
 			className,
@@ -44,7 +44,7 @@ const { label, class: className = '', size = 'default' } = Astro.props as Props;
 		align-items: center;
 		border: 2px solid var(--color-ink);
 		border-radius: 0.65rem;
-		background: #ff7226;
+		background: var(--primary-color);
 		box-shadow: 4px 4px 0 var(--color-ink);
 		color: var(--color-ink);
 		cursor: pointer;

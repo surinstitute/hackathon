@@ -6,6 +6,7 @@
 	--grid-divisions: 20;
 	--content-columns: 18;
 	--grid-cell: calc(100vw / var(--grid-divisions));
+	--header-height: max(4.5rem, var(--grid-cell));
 	--content-width: calc(var(--grid-cell) * var(--content-columns));
 
 	--color-ink: #050505;
@@ -14,7 +15,8 @@
 	--color-surface: #ffffff;
 	--color-border: var(--color-ink);
 	--shadow-hard: 5px 5px 0 var(--color-ink);
-	--accent-color: #ff7226;
+	--primary-color: #F6E303;
+	--accent-color: #FF0080;
 }
 
 @layer base {
@@ -173,13 +175,13 @@
 	}
 
 	.button.primary {
-		background: var(--color-ink);
-		color: var(--color-surface);
+		background: var(--primary-color);
+		color: var(--color-ink);
 		border-color: var(--color-ink);
 	}
 
 	.button.accent {
-		background: #ff7226;
+		background: var(--accent-color);
 		color: var(--color-ink);
 		border-color: var(--color-ink);
 	}

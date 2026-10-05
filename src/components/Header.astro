@@ -28,7 +28,7 @@ const homeHref = withBase(translatePath('/'));
           class="text-base font-semibold uppercase m-0 [html[data-nav='open']_&]:text-center"
         >
           <a
-            class="inline-flex items-center justify-center rounded-[0.65rem] border-2 border-ink bg-[#ff7226] p-2 text-ink shadow-[4px_4px_0_#050505] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none"
+            class="inline-flex items-center justify-center rounded-[0.65rem] border-2 border-ink bg-[var(--primary-color)] p-2 text-ink shadow-[4px_4px_0_var(--color-ink)] transition-all hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none"
             href={homeHref}
             aria-label={site.title}
           >
@@ -137,7 +137,7 @@ const homeHref = withBase(translatePath('/'));
   @reference "tailwindcss";
 
   header {
-		min-height: calc(var(--grid-cell) * 1);
+		min-height: var(--header-height);
 		background: var(--color-surface);
 		border-bottom: 4px solid var(--color-ink);
 		box-shadow: 0 4px 0 var(--color-ink);

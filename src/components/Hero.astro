@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import heroImage from '../assets/wallpaper.png';
 import HeyFormTrigger from './HeyFormTrigger.astro';
+import Plasma from './Plasma.vue';
 
 interface Action {
 	label: string;
@@ -29,7 +30,6 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 	<div class="hero-overlay" aria-hidden="true"></div>
 	<div class="content-shell hero-content">
 		<div class="grid max-w-3xl gap-4">
-			{eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 			<h1>
 				{titleParts.map((part, index) => (
 					<>
@@ -38,6 +38,7 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 					</>
 				))}
 			</h1>
+			{eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
 			{description && <p class="hero-description">{description}</p>}
 			{actions.length > 0 && (
 				<div class="flex flex-wrap gap-3 pt-3">
@@ -58,6 +59,9 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 			)}
 		</div>
 	</div>
+	<div class="hero-plasma" aria-hidden="true">
+		<Plasma client:visible colorToken="--accent-color" speed={0.6} scale={0.5} opacity={0.7} mouseInteractive={true} />
+	</div>
 </section>
 
 <style>
@@ -76,6 +80,7 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 	}
 
 	.hero-image,
+	.hero-plasma,
 	.hero-overlay {
 		position: absolute;
 		inset: 0;
@@ -84,26 +89,29 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 	}
 
 	.hero-image {
-		z-index: -2;
+		z-index: -3;
 		object-fit: cover;
 		object-position: center center;
 	}
 
+	.hero-plasma {
+		z-index: 1;
+		pointer-events: none;
+	}
+
 	.hero-overlay {
-		z-index: -1;
+		z-index: -2;
 		background:
-			linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 58%, var(--hero-overlay-end) 100%),
-			linear-gradient(0deg, var(--hero-overlay-bottom) 0%, transparent 62%);
+			linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 58%, var(--hero-overlay-end) 100%);
 	}
 
 	:global(:root) {
-		--hero-overlay-start: rgb(255 255 255 / 96%);
-		--hero-overlay-middle: rgb(255 255 255 / 82%);
-		--hero-overlay-end: rgb(255 255 255 / 20%);
-		--hero-overlay-bottom: #ff7226;
-		--hero-content-color: #050505;
-		--hero-muted-color: rgb(5 5 5 / 76%);
-		--hero-button-background: #ff7226;
+		--hero-overlay-start: color-mix(in oklab, var(--color-surface) 65%, transparent);
+		--hero-overlay-middle: color-mix(in oklab, var(--color-surface) 45%, transparent);
+		--hero-overlay-end: color-mix(in oklab, var(--color-surface) 25%, transparent);
+		--hero-content-color: var(--color-ink);
+		--hero-muted-color: color-mix(in oklab, var(--color-ink) 90%, transparent);
+		--hero-button-background: var(--accent-color);
 		--hero-button-color: #050505;
 		--hero-button-border: #050505;
 		--hero-button-secondary-background: rgb(255 255 255 / 78%);
@@ -123,7 +131,7 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 		font-weight: 600;
 		letter-spacing: 0.28em;
 		text-transform: uppercase;
-		color: #ff7226;
+		color: var(--accent-color);
 	}
 
 	.hero-content h1 {
@@ -138,7 +146,7 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 		padding: 0.02em 0.13em 0.08em;
 		border: 0.07em solid var(--color-ink);
 		border-radius: 0.16em;
-		background: #ff7226;
+		background: var(--primary-color);
 		box-shadow: 0.09em 0.09em 0 var(--color-ink);
 		color: var(--color-ink);
 		transform: translate(-0.02em, -0.02em) rotate(-1deg);
@@ -198,8 +206,5 @@ const titleParts = highlightedWord ? title.split(highlightedWord) : [title];
 			object-position: 62% center;
 		}
 
-		.hero-overlay {
-			background: linear-gradient(90deg, var(--hero-overlay-start) 0%, var(--hero-overlay-middle) 100%), linear-gradient(0deg, var(--hero-overlay-bottom) 0%, transparent 70%);
-		}
 	}
 </style>
