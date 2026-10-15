@@ -15,8 +15,9 @@ const speakers = (await getCollection('speakers'))
 		<Card
 			title={speaker.data.name}
 			href={withBase(translatePath(`/speakers/${speaker.data.id}/`))}
-			eyebrow={[speaker.data.role, speaker.data.company].filter(Boolean).join(' · ')}
-			description={speaker.data.bio}
+			eyebrow={speaker.data.role}
+			eyebrowDetail={speaker.data.company}
+			eyebrowPosition="below-title"
 			image={speaker.data.avatar}
 			imageAlt={speaker.data.name}
 			imageLoading={index === 0 ? 'eager' : 'lazy'}

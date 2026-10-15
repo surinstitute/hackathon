@@ -6,6 +6,11 @@ day: 1
 startsAt: '09:00'
 endsAt: '10:00'
 room: auditorium
+speakers:
+  - pamela-flores
+  - dani-lozano
+  - fer-torres
+  - gianella-severini
 tags:
   - Bienvenida
 ---
