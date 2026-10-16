@@ -7,9 +7,12 @@ startsAt: '10:00'
 endsAt: '13:00'
 room: auditorium
 speakers:
-  - pamela-flores
+  - ariadna-tovar
   - dani-lozano
   - gianella-severini
+  - adriana-rocha
+  - jorge-macias
+  - inti-barrientos
 tags:
   - Formación
   - Masterclasses
