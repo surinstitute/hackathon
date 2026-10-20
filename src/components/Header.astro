@@ -21,7 +21,7 @@ const homeHref = withBase(translatePath('/'));
     class="content-shell w-full h-full"
   >
     <div
-      class="grid h-full grid-cols-[1fr_auto] grid-rows-[auto_auto] items-center md:grid-cols-[auto_1fr_auto] md:grid-rows-1"
+      class="grid h-full grid-cols-[1fr_auto] grid-rows-[auto_auto] items-center min-[1100px]:grid-cols-[auto_1fr_auto] min-[1100px]:grid-rows-1"
     >
       <div class="flex flex-col [html[data-nav='open']_&]:items-center">
         <div
@@ -42,7 +42,7 @@ const homeHref = withBase(translatePath('/'));
         </div>
       </div>
       <nav
-        class="hidden md:flex items-center gap-2 md:gap-3 overflow-x-auto overflow-y-visible pt-1 pb-0.5 text-[0.76rem] font-extrabold tracking-[0.2em] uppercase text-muted [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [--tw-pan-y:none] [&::-webkit-scrollbar]:hidden col-span-2 md:col-auto md:justify-self-center [html[data-nav='open']_&]:flex [html[data-nav='open']_&]:flex-col [html[data-nav='open']_&]:items-start [html[data-nav='open']_&]:gap-2 [html[data-nav='open']_&]:py-4 [html[data-nav='open']_&]:w-full [html[data-nav='open']_&]:col-span-2 [html[data-nav='open']_&]:justify-self-stretch"
+        class="hidden min-[1100px]:flex items-center gap-2 min-[1100px]:gap-3 overflow-x-auto overflow-y-visible pt-1 pb-0.5 text-[0.76rem] font-extrabold tracking-[0.2em] uppercase text-muted [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [--tw-pan-y:none] [&::-webkit-scrollbar]:hidden col-span-2 min-[1100px]:col-auto min-[1100px]:justify-self-center [html[data-nav='open']_&]:flex [html[data-nav='open']_&]:flex-col [html[data-nav='open']_&]:items-start [html[data-nav='open']_&]:gap-2 [html[data-nav='open']_&]:py-4 [html[data-nav='open']_&]:w-full [html[data-nav='open']_&]:col-span-2 [html[data-nav='open']_&]:justify-self-stretch"
       >
         <HeaderLink href={translatePath('/about/') }>
           {t('nav.about')}
@@ -53,9 +53,9 @@ const homeHref = withBase(translatePath('/'));
         <HeaderLink href={translatePath('/news/') }>
           {t('nav.news')}
         </HeaderLink>
-        <!-- <HeaderLink href={translatePath('/speakers/') }>
+      <HeaderLink href={translatePath('/speakers/') }>
           {t('nav.speakers')}
-        </HeaderLink> -->
+        </HeaderLink>
         <HeaderLink href={translatePath('/schedule/') }>
           {t('nav.schedule')}
         </HeaderLink>
@@ -63,9 +63,9 @@ const homeHref = withBase(translatePath('/'));
           {t('nav.venue')}
         </HeaderLink>
       </nav>
-      <div class="flex items-center gap-2 md:gap-3 shrink-0 justify-end">
+      <div class="flex items-center gap-2 min-[1100px]:gap-3 shrink-0 justify-end">
         <button
-          class="header-button md:hidden"
+          class="header-button min-[1100px]:hidden"
           type="button"
           id="nav-toggle"
           aria-label="Toggle navigation"

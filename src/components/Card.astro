@@ -11,10 +11,12 @@ interface Props {
 		image?: ImageMetadata | string;
 	imageAlt?: string;
 	eyebrow?: string;
+	eyebrowDetail?: string;
+	eyebrowPosition?: 'top' | 'below-title';
 		imageLoading?: 'eager' | 'lazy';
 }
 
-const { title, href, description, date, image, imageAlt = '', eyebrow, imageLoading = 'lazy' } = Astro.props as Props;
+const { title, href, description, date, image, imageAlt = '', eyebrow, eyebrowDetail, eyebrowPosition = 'top', imageLoading = 'lazy' } = Astro.props as Props;
 
 const baseDate = typeof date === 'string' ? new Date(date) : date;
 const articleClass =
@@ -47,7 +49,12 @@ const articleClass =
 				</figure>
 			)}
 
-			{eyebrow && <p class="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-subtle">{eyebrow}</p>}
+			{eyebrowPosition === 'top' && (eyebrow || eyebrowDetail) && (
+				<div class="flex flex-col gap-1">
+					{eyebrow && <p class="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-subtle">{eyebrow}</p>}
+					{eyebrowDetail && <p class="text-sm leading-snug text-muted">{eyebrowDetail}</p>}
+				</div>
+			)}
 
 			{baseDate && (
 				<p class="text-sm text-muted">
@@ -58,6 +65,13 @@ const articleClass =
 			<h3 class="text-lg font-semibold leading-tight text-ink transition-colors duration-150 group-hover:text-ink sm:text-xl">
 				<span>{title}</span>
 			</h3>
+
+			{eyebrowPosition === 'below-title' && (eyebrow || eyebrowDetail) && (
+				<div class="flex flex-col gap-1">
+					{eyebrow && <p class="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-subtle">{eyebrow}</p>}
+					{eyebrowDetail && <p class="text-sm leading-snug text-muted">{eyebrowDetail}</p>}
+				</div>
+			)}
 
 			{description && <p class="text-[0.97rem] leading-relaxed text-muted">{description}</p>}
 		</a>
@@ -88,7 +102,12 @@ const articleClass =
 			</figure>
 		)}
 
-		{eyebrow && <p class="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-subtle">{eyebrow}</p>}
+		{eyebrowPosition === 'top' && (eyebrow || eyebrowDetail) && (
+			<div class="flex flex-col gap-1">
+				{eyebrow && <p class="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-subtle">{eyebrow}</p>}
+				{eyebrowDetail && <p class="text-sm leading-snug text-muted">{eyebrowDetail}</p>}
+			</div>
+		)}
 
 		{baseDate && (
 			<p class="text-sm text-muted">
@@ -99,6 +118,13 @@ const articleClass =
 		<h3 class="text-lg font-semibold leading-tight text-ink transition-colors duration-150 group-hover:text-ink sm:text-xl">
 			<span>{title}</span>
 		</h3>
+
+		{eyebrowPosition === 'below-title' && (eyebrow || eyebrowDetail) && (
+			<div class="flex flex-col gap-1">
+				{eyebrow && <p class="text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-subtle">{eyebrow}</p>}
+				{eyebrowDetail && <p class="text-sm leading-snug text-muted">{eyebrowDetail}</p>}
+			</div>
+		)}
 
 		{description && <p class="text-[0.97rem] leading-relaxed text-muted">{description}</p>}
 

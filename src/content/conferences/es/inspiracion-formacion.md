@@ -7,20 +7,15 @@ startsAt: '10:00'
 endsAt: '13:00'
 room: auditorium
 speakers:
-  - pamela-oneill
+  - ariadna-tovar
   - dani-lozano
-  - fer-torres
-  - gianella
+  - gianella-severini
+  - adriana-rocha
+  - jorge-macias
+  - inti-barrientos
 tags:
   - Formación
   - Masterclasses
 ---
 
 Sesiones de inspiración y formación para conocer la evidencia, los marcos normativos y las dinámicas de comercialización de los productos emergentes de nicotina.
-
-## Masterclasses
-
-- Pamela O'Neill
-- Dani Lozano - SUR
-- Fer Torres - SERAJ
-- Gianella - CREA

@@ -6,6 +6,10 @@ day: 1
 startsAt: '09:00'
 endsAt: '10:00'
 room: auditorium
+speakers:
+  - CREA
+  - SUR
+  - TFK
 tags:
   - Bienvenida
 ---
